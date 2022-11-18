@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+  }
+  .columnLeft {
+    flex: 33.33%;
+    text-align: center;
+  }
+  .columnRight {
+    flex: 66.66%;
+    text-align: center;
+  }
+  
+  .title {
+    margin: 20px;
+  }
+  
+  .image {
+    margin-left: auto;
+    margin-right: auto;
+    width: 10%;
+    height: 30%;
+  
+      //TODO: Do this shit better
+      overflow: hidden;
+    -webkit-border-radius: 180px;
+    -moz-border-radius: 180px;
+    -ms-border-radius: 180px;
+    -o-border-radius: 180px;
+    border-radius: 180px;
+    /* the rest */
+    position: relative; /* for the overlay later */
+    margin: 0px auto;
+    text-align: center;
+    // margin-bottom: 8px;
+    border: 3px solid #FFF;
+    // -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),inset 0px 3px 8px rgba(0, 0, 0, 0.3);
+    // -moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3),inset 0px 3px 8px rgba(0,0,0,0.3);
+    // box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),inset 0px 3px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .inline {
+      display: inline-block;
+  }
+  
+  .leftspace {
+    margin-left: 10px;
+  }
+  
+  .vertical {
+    vertical-align: middle;
+  }
+  

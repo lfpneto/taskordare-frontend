@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@import url(https://fonts.googleapis.com/css?family=Patrick+Hand);
+
+$font-stack: 'Patrick Hand';
+$primary-color: white;
+$secondary-color: #FFB3B3;
+$third-color: #c1efff;
+
+
+
+
+
+body {
+  background-color: #F0C788;
+  // overflow-y: hidden;
+}
+
+*{
+	font: 100% $font-stack;
+  color: $primary-color;
+}
+
+button{
+  font-size: 22px;  
+}

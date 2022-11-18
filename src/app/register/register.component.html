@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="column alignImgCenter">
+        <img class="bubbles" src="https://i.imgur.com/1kzO2ue.png" alt="bubbles">
+        <!-- BUBBLES -->
+    </div>
+    <div class="column alignFormCenter">
+        <h1 class="tittle">Register</h1>
+        <form #AdminInformation (ngSubmit)="AdminForm(AdminInformation)"> 
+            <div class="loginForm">
+                <input type="text" required minlength="3" name="username" placeholder="Username" ngModel/>
+                <input type="text" name="firstName" placeholder="First Name" ngModel/>
+                <input type="text" name="lastName" placeholder="Last Name" ngModel/>
+                <input type="email" name="email" placeholder="Email" ngModel/>
+                <p *ngIf="">Email format invalid</p>
+                <input type="password" name="password" placeholder="Password" ngModel/>
+                <input type="password" name="passwordConfirmation" placeholder="Repeat Password" ngModel/>
+            </div>
+            <p *ngIf="">Fields are missing</p>
+            <button class="buttonRegister"> Sign Up </button>
+        </form>
+        <br>
+        <br>
+
+        <div class="url">Already have account? 😎 </div>
+        <button [routerLink]="['/login']" class="buttonLogin"> Login </button>
+       
+
+       
+            
+            
+        
+    </div>
+    <div class="column alignImgCenter">
+        <img class="bubbles" src="https://i.imgur.com/WyDxpe9.png" alt="bubbles">
+        <!-- BUBBLES -->
+    </div>
+</div>

@@ -1,0 +1,72 @@
+
+.container {
+    display: flex;
+    // background-color: red;
+ }	
+
+.column {
+    flex: 33.33%;
+    /* height: 100px; */
+    padding: 10px;
+    margin-top: 2%;
+    margin-left: 2%;
+    /* background-color: #cccccc; */
+    text-align: left;
+    // background-color: green;
+  }
+
+  .right{
+    text-align: center;
+  }
+
+.descriptionText{
+    display: flex;
+    margin-bottom: 2%;
+}
+
+a.url{
+    font-size: 2rem;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 20%;
+  }
+
+  img.bubbles{
+    width: 60%;
+  }
+
+  h2.usersOpinionTittle{
+    margin-top: 10%;
+  }
+
+  .userCard{
+    // background-color: red;
+    display: flex;
+    margin-top: 5%;
+    margin-left: 2%;
+  }
+  .userCardLeft{
+    flex: 20%;
+  }
+
+  .userCardRight{
+    flex: 80%;
+  }
+  .userFavCard{
+    font-size: 4rem;
+  }
+
+  .userTittleCard{
+    margin-left: 2%;
+    // background-color: yellow;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  
+  .userTextCard{
+    margin-left: 2%;
+    // background-color: yellow;
+    font-size: 1.2rem;
+    
+  }
+

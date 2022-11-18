@@ -1,0 +1,150 @@
+$secondary-color: #FFB3B3;
+$third-color: #c1efff;
+
+.container {
+  display: flex;
+}
+.columnLeft {
+  flex: 33.33%;
+  text-align: center;
+}
+.columnRight {
+  flex: 66.66%;
+  text-align: center;
+}
+
+.title {
+  margin: 10px;
+}
+
+.grouptitle{
+	font-size: 25px;
+}
+
+.image {
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+  height: 30%;
+
+	//TODO: Do this shit better
+	overflow: hidden;
+  -webkit-border-radius: 180px;
+  -moz-border-radius: 180px;
+  -ms-border-radius: 180px;
+  -o-border-radius: 180px;
+  border-radius: 180px;
+  /* the rest */
+  position: relative; /* for the overlay later */
+  margin: 0px auto;
+  text-align: center;
+  // margin-bottom: 8px;
+  border: 3px solid #FFF;
+  // -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),inset 0px 3px 8px rgba(0, 0, 0, 0.3);
+  // -moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3),inset 0px 3px 8px rgba(0,0,0,0.3);
+  // box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),inset 0px 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.inline {
+	display: inline-block;
+}
+
+.leftspace {
+  margin-left: 10px;
+}
+
+.vertical {
+  vertical-align: middle;
+}
+
+.button{
+	margin-right: 20%;
+	margin-left: 20%;
+	margin-top: 20px;
+
+	width: 30%;
+	background-color: rgba(255, 255, 255, 0);
+	border: 4px solid rgb(255, 255, 255);
+  border-radius: 15px;
+	
+  color: rgb(255, 255, 255);
+  // padding: 14px 28px;
+
+  cursor: pointer;
+}
+
+.button:hover{
+	background-color: $third-color;
+}
+
+.border{
+	margin: 20px;
+	
+	margin-right: 20%;
+	margin-left: 20%;
+	width: 60%;
+
+	background-color: rgba(255, 255, 255, 0);
+	border: 4px solid rgb(255, 255, 255);
+  border-radius: 15px;
+	
+  color: rgb(255, 255, 255);
+}
+
+.titleGroups{
+	font-size: 30px;
+}
+
+.groups{
+	font-size: 23px;
+}
+
+.groupTitle{
+	font-size: 3rem;
+	margin: 0px;
+	margin-top: 10px;
+}
+
+.groupDescription{
+	font-size: 1.3rem;
+	margin: 0px;
+}
+
+.membersBorder{
+	margin: 20px;
+	
+	width: 80%;
+
+	background-color: rgba(255, 255, 255, 0);
+	border: 4px solid rgb(255, 255, 255);
+  border-radius: 15px;
+	
+  color: rgb(255, 255, 255);
+}
+
+.goalsBorder{
+	margin: 20px;
+	
+
+	width: 90%;
+
+	background-color: rgba(255, 255, 255, 0);
+	border: 4px solid rgb(255, 255, 255);
+  border-radius: 15px;
+	
+  color: rgb(255, 255, 255);
+}
+
+.groupContainer {
+  display: flex;
+}
+.groupColumnLeft {
+  flex: 20%;
+  text-align: center;
+}
+
+.groupColumnRight {
+  flex: 80%;
+  text-align: center;
+}
+

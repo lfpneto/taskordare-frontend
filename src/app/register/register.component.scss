@@ -1,0 +1,153 @@
+.container {
+  display: flex;
+  // background-color: red;
+}
+
+.column {
+  flex: 33.33%;
+  /* height: 100px; */
+  padding: 10px;
+  margin-top: 2%;
+  margin-left: 2%;
+  /* background-color: #cccccc; */
+  text-align: left;
+  // background-color: green;
+}
+
+.alignImgCenter {
+  text-align: center;
+}
+
+.alignFormCenter {
+  text-align: center;
+  margin-top: 0;
+}
+
+h1.tittle {
+  font-size: 3rem;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+img.bubbles {
+  width: 60%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  font-family: Patrick Hand;
+  width: 80%;
+  padding: 15px;
+  margin: 5px 0 5px 0;
+  display: inline-block;
+
+  background: #f1f1f100;
+
+  outline: none;
+  border: 2px solid white;
+  box-shadow: 0 0 10px #e8be42;
+  border-radius: 40px;
+
+  color: white;
+  font-size: large;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-bottom: 2px solid #f1a009;
+  color: white;
+  transition: 0.2s ease;
+}
+
+.buttonRegister {
+  margin-top: 10px;
+  font-family: Patrick Hand;
+  align-items: center;
+  background-color: #FBCA48;
+  border: 0;
+  border-radius: 40px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 20px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  height: 50px;
+  width: 90%;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+    box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+    color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.buttonRegister:hover,
+.buttonRegister:focus {
+  background-color: #f6d783;
+  color: #ffffff;
+}
+
+.buttonRegister:active {
+  background: #f1a009;
+  color: rgb(255, 255, 255, 0.7);
+}
+
+url{
+    font-size: 1rem;
+    color: white;
+    margin-top: 20%;
+    // margin-bottom: 20%;
+  }
+
+  .buttonLogin {
+    margin-top: 5px;
+    font-family: Patrick Hand;
+    align-items: center;
+    background-color: #ffb3b3;
+    border: 0;
+    border-radius: 40px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 20px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 20px;
+    height: 9%;
+    width: 40%;
+    overflow: hidden;
+    padding: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    touch-action: manipulation;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+      box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+      color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+  }
+  
+  .buttonLogin:hover,
+  .buttonLogin:focus {
+    background-color: #c1efff;
+    color: #ffffff;
+  }
+  
+  .buttonLogin:active {
+    background: #f1a009;
+    color: rgb(255, 255, 255, 0.7);
+  }

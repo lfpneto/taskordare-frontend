@@ -1,0 +1,37 @@
+<div class="container">
+	<div class="column">
+		<h3 id="user"> {{userNameLabel}} </h3>
+	</div>
+	<div class="column">
+		<h1 class="Tittle"><a (click)="mainClick()" [routerLink]="['/']">Task Or Dare</a></h1>
+	</div>
+	<div class="column loginCol">
+		<button class="buttonLogin buttonBlue" *ngIf="isLoggedIn" [routerLink]="['/usermain']"> Home </button>
+		<button class="buttonLogin" *ngIf="!isLoggedIn && !loginPage" [routerLink]="['/login']" (click)="inLoginPage()"
+			value="login"> Login </button>
+		<button class="buttonLogin" *ngIf="isLoggedIn" [routerLink]="['/logout']" (click)="changeLoggedStatus()"
+			value="logout"> Logout </button>
+		<!-- <button class="buttonLogin" [routerLink]="['/register']" value="register"> Register </button> -->
+
+	</div>
+</div>
+<hr class="rounded">
+
+
+<!-- <app-information *ngIf="selectedPage == 'Info'"></app-information>
+<app-login *ngIf="selectedPage == 'Login'"></app-login>
+<app-register *ngIf="selectedPage == 'Register'"></app-register> -->
+
+<!-- <div class="content" role="main">
+
+  
+  <footer>
+    FEUP - Group D - Laboratory
+  </footer>
+
+
+
+</div> -->
+
+
+<router-outlet></router-outlet>
