@@ -1,0 +1,20 @@
+<div class="container">
+    <form #goalInfo (ngSubmit)="addGoal(goalInfo)">
+        <h1 class="tittle">Group #1 Add/Edit Goal</h1>
+        <input type="text" name="name" placeholder="Name" ngModel />
+        <input type="text" name="description" placeholder="Description" ngModel />
+        <br>
+        <br>
+        Tasks:
+        <br>
+        <input type="text" name="task" placeholder="Task" ngModel />
+        <button type="submit" value="submit" class="buttonRose">Add Task</button>
+        <br>
+
+        <input type="text" name="points" placeholder="Points" ngModel />
+        <input type="text" name="date" placeholder="Date" ngModel />
+
+        <br>
+        <button type="submit" value="submit" class="buttonRose buttonRoseGoal">Add Goal</button>
+    </form>
+</div>

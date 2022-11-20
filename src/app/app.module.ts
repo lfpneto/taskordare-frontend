@@ -19,6 +19,7 @@ import { UsersMainComponent } from './users-main/users-main.component';
 import { UserGroupsComponent } from './user-groups/user-groups.component';
 import { UserDaresComponent } from './user-dares/user-dares.component';
 import { UserGoalsComponent } from './user-goals/user-goals.component';
+import { UserGroupGoalComponent } from './user-group-goal/user-group-goal.component';
 
 
 
@@ -35,6 +36,7 @@ import { UserGoalsComponent } from './user-goals/user-goals.component';
     UserGroupsComponent,
     UserDaresComponent,
     UserGoalsComponent,
+    UserGroupGoalComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +77,11 @@ import { UserGoalsComponent } from './user-goals/user-goals.component';
         path : 'usergoals',  
         component : UserGoalsComponent
       },
+      {
+        path : 'usergroupgoal',  
+        component : UserGroupGoalComponent
+      },
+
     ])
   ],
   providers: [],

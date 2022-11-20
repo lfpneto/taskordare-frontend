@@ -21,6 +21,33 @@ $third-color: #c1efff;
 	font-size: 25px;
 }
 
+.favIconTrash{
+  margin-left: 15px;
+  // color: red !important;
+  cursor: pointer;
+  border-radius: 40%;
+  // font-size: 4rem;
+}
+.favIconTrash:hover{
+  background-color: red;
+}
+
+.inputEmail{
+  // background-color: blue;
+  width: 60%;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.favIconAdd{
+  margin-left: 2px;
+  cursor: pointer;
+  border-radius: 40%;
+}
+.favIconAdd:hover{
+  background-color: $third-color;
+}
+
 .image {
   margin-left: auto;
   margin-right: auto;
@@ -97,7 +124,22 @@ $third-color: #c1efff;
 
 .groups{
 	font-size: 23px;
+  cursor:default;
 }
+
+.goalName{
+	font-size: 23px;
+}
+.goalName:hover{
+	color:$third-color;
+}
+
+.goalDescription{
+	font-size: 20px;
+  margin-left: 10px;
+  cursor:default;
+}
+
 
 .groupTitle{
 	font-size: 3rem;

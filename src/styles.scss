@@ -23,3 +23,76 @@ body {
 button{
   font-size: 22px;  
 }
+
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  font-family: Patrick Hand;
+  width: 80%;
+  padding: 7px;
+  // margin: 5px 0 22px 0;
+  margin:10px;
+  display: inline-block;
+
+  background: #f1f1f100;
+
+  outline: none;
+  border: 2px solid white;
+  box-shadow: 0 0 10px #e8be42;
+  border-radius: 40px;
+
+  color: white;
+  font-size: large;
+}
+
+input[type="text"]:focus,
+input[type="email"],
+input[type="password"]:focus {
+  border-bottom: 2px solid #f1a009;
+  color: white;
+  transition: 0.2s ease;
+}
+
+.buttonRose {
+  font-family: Patrick Hand;
+  align-items: center;
+  background-color: #ffb3b3;
+  border: 0;
+  border-radius: 40px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  margin:10px;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 20px;
+  height: 50px;
+  width: 10%;
+  overflow: hidden;
+  padding: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+    box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s,
+    color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.buttonRose:hover,
+.buttonRose:focus {
+  background-color: #c1efff;
+  color: #ffffff;
+}
+
+.buttonRose:active {
+  background: #f1a009;
+  color: rgb(255, 255, 255, 0.7);
+}
