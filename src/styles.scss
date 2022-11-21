@@ -20,6 +20,17 @@ body {
   color: $primary-color;
 }
 
+h1{
+  font-size: 35px;
+}
+h2{
+  font-size: 25px;
+}
+h3{
+  font-size: 20px;
+}
+
+
 button{
   font-size: 22px;  
 }
@@ -96,3 +107,11 @@ input[type="password"]:focus {
   background: #f1a009;
   color: rgb(255, 255, 255, 0.7);
 }
+
+.pointer{
+	cursor: pointer;
+}
+.pointer:hover{
+	color:#c1efff;
+}
+
