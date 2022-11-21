@@ -1,52 +1,160 @@
 .container {
-    display: flex;
+  display: flex;
+}
+.columnLeft {
+  flex: 33.33%;
+  text-align: center;
+}
+.columnRight {
+  flex: 66.66%;
+  text-align: center;
+}
+
+.title {
+  margin: 20px;
+}
+
+.center{
+  margin-top: 0px;
+  text-align: center;
+}
+
+.image {
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+  height: 30%;
+
+  //TODO: Do this shit better
+  overflow: hidden;
+  -webkit-border-radius: 180px;
+  -moz-border-radius: 180px;
+  -ms-border-radius: 180px;
+  -o-border-radius: 180px;
+  border-radius: 180px;
+  /* the rest */
+  position: relative; /* for the overlay later */
+  margin: 0px auto;
+  text-align: center;
+  // margin-bottom: 8px;
+  border: 3px solid #fff;
+  // -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),inset 0px 3px 8px rgba(0, 0, 0, 0.3);
+  // -moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3),inset 0px 3px 8px rgba(0,0,0,0.3);
+  // box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),inset 0px 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.inline {
+  display: inline-block;
+}
+
+.leftspace {
+  margin-left: 10px;
+}
+
+.vertical {
+  vertical-align: middle;
+}
+
+$base-spacing-unit: 24px;
+$half-spacing-unit: $base-spacing-unit / 2;
+
+$color-form-highlight: #eeeeee;
+$primary-color: white;
+$secondary-color: #ffb3b3;
+$third-color: #c1efff;
+
+.table {
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  border: 1px solid $color-form-highlight;
+}
+
+.table-header {
+  display: flex;
+  width: 100%;
+  background: wheat;
+  padding: ($half-spacing-unit * 1.5) 0;
+}
+
+.table-row {
+  display: flex;
+  width: 100%;
+  padding: ($half-spacing-unit * 1.5) 0;
+  // background-color: $third-color;
+
+  // &:nth-of-type(odd) {
+  // 	background: $secondary-color;
+  // }
+}
+
+.table-data,
+.header__item {
+  flex: 1 1 20%;
+  text-align: center;
+}
+
+.header__item {
+  font-size: 20px;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.link:hover {
+  color: $third-color;
+  // margin: 10px white;
+  border: 3px solid $third-color;
+  border-radius: 10px;
+}
+
+.filter__link {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-left: $base-spacing-unit;
+  padding-right: $base-spacing-unit;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: -($half-spacing-unit * 1.5);
+    color: white;
+    font-size: $half-spacing-unit;
+    top: 50%;
+    transform: translateY(-50%);
   }
-  .columnLeft {
-    flex: 33.33%;
-    text-align: center;
+
+  &.desc::after {
+    content: "(desc)";
   }
-  .columnRight {
-    flex: 66.66%;
-    text-align: center;
+
+  &.asc::after {
+    content: "(asc)";
   }
-  
-  .title {
-    margin: 20px;
-  }
-  
-  .image {
-    margin-left: auto;
-    margin-right: auto;
-    width: 10%;
-    height: 30%;
-  
-      //TODO: Do this shit better
-      overflow: hidden;
-    -webkit-border-radius: 180px;
-    -moz-border-radius: 180px;
-    -ms-border-radius: 180px;
-    -o-border-radius: 180px;
-    border-radius: 180px;
-    /* the rest */
-    position: relative; /* for the overlay later */
-    margin: 0px auto;
-    text-align: center;
-    // margin-bottom: 8px;
-    border: 3px solid #FFF;
-    // -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),inset 0px 3px 8px rgba(0, 0, 0, 0.3);
-    // -moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3),inset 0px 3px 8px rgba(0,0,0,0.3);
-    // box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3),inset 0px 3px 8px rgba(0, 0, 0, 0.3);
-  }
-  
-  .inline {
-      display: inline-block;
-  }
-  
-  .leftspace {
-    margin-left: 10px;
-  }
-  
-  .vertical {
-    vertical-align: middle;
-  }
-  
+}
+
+.checkbox{
+	margin-left: 20px;
+}
+
+.imgPath{
+	font-size: 15px;
+	color: rgb(252, 234, 199);
+	margin-left: 15px;
+}
+
+.favIconTrash {
+  margin-left: 15px;
+  // color: red !important;
+  cursor: pointer;
+  border-radius: 40%;
+  // font-size: 4rem;
+}
+.favIconTrash:hover {
+  background-color: $third-color;
+}
