@@ -51,13 +51,23 @@ export class LoginComponent implements OnInit {
           let token = result.token;
           //let token = "teste123";
           localStorage.setItem('token', token); //need to talk to luis to rewrite this
-          localStorage.setItem('id', "result123"); //same here
           localStorage.setItem('username', this.userDetail.userName)
 
           // this.appComponent.setUserNameText(this.userDetail.userName);
-          
-          this.router.navigate(['/usermain', result]);
-          
+
+
+            this.adminService.getUserDetail(this.userDetail.userName).subscribe(
+              (response) => {
+                let result = response;
+                console.log(result);
+                localStorage.setItem('id', result.data.User.id); //same here
+                this.router.navigate(['/usermain', result]);
+
+              },
+              (error) => {
+                console.log('error while getting Admin Data');
+              }
+            );
         }
         if (result == -1) {
           alert(
