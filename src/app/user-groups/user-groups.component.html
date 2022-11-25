@@ -4,83 +4,119 @@
             <img class="image inline vertical" src="../../assets/groups.png">
             <h2 class="inline leftspace grouptitle"> Groups </h2>
         </div>
-        <button class="button">-> Join</button>
-        <button class="button">+ Create</button>
+        <button class="button" (click)="showJoinGroup()">-> Join</button>
+        <button class="button" (click)="showCreateGroup()">+ Create</button>
         <div class="border">
             <div class="titleGroups">⮟ My Groups ⮟</div>
 
-            <a class="groups" [routerLink]="['/usergroups']">Group 1</a>
+            <a class="groups" [routerLink]="['/usergroups']" (click)="showGroupAndGoals()">Group 1</a>
             <br>
-            <a class="groups" [routerLink]="['/usergroups']">Group 2</a>
+            <a class="groups" [routerLink]="['/usergroups']" (click)="showGroupAndGoals()">Group 2</a>
             <br>
-            <a class="groups" [routerLink]="['/usergroups']">Group 3</a>
+            <a class="groups" [routerLink]="['/usergroups']" (click)="showGroupAndGoals()">Group 3</a>
             <br>
-            <a class="groups" [routerLink]="['/usergroups']">Group 4</a>
+            <a class="groups" [routerLink]="['/usergroups']" (click)="showGroupAndGoals()">Group 4</a>
         </div>
     </div>
     <div class="columnRight">
-        <h1 class="groupTitle">Group Title</h1>
-        <h4 class="groupDescription">Group Description</h4>
-        <div class="groupContainer">
-            <div class="groupColumnLeft">
-                <div class="membersBorder">
-                    <div class="titleGroups">Members</div>
-                    <a class="groups" [routerLink]="['/usergroups']">Member 1</a>
-                    <fa-icon class="favIconTrash" [icon]="faTrash"></fa-icon>
-                    <br>
-                    <a class="groups" [routerLink]="['/usergroups']">Member 2</a>
-                    <fa-icon class="favIconTrash" [icon]="faTrash"></fa-icon>
-                    <br>
-                    <a class="groups" [routerLink]="['/usergroups']">Member 3</a>
-                    <fa-icon class="favIconTrash" [icon]="faTrash"></fa-icon>
-                    <br>
-                    <a class="groups" [routerLink]="['/usergroups']">Member 4</a>
-                    <fa-icon class="favIconTrash" [icon]="faTrash"></fa-icon>
-                </div>
-                <div class="membersBorder">
-                    <input type="text" class="inputEmail" name="username" placeholder="User Email" ngModel />
-                    <fa-icon class="favIconAdd" [icon]="faPlus"></fa-icon>
-                </div>
-            </div>
-            <div class="groupColumnRight">
-                <div class="groupColumn goalsBorder">
-                    <div class="titleGroups">Goals</div>
-                    <div class="allGoals">
-                        <a class="goalName" [routerLink]="['/usergroups']">Goal 1</a>
-                        <a class="goalDescription">Description Goal 1</a>
-                        <br>
-                        <a class="goalName" [routerLink]="['/usergroups']">Goal 2</a>
-                        <a class="goalDescription">Description Goal 2</a>
-                        <br>
-                        <a class="goalName" [routerLink]="['/usergroups']">Goal 3</a>
-                        <a class="goalDescription">Description Goal 3</a>
-                        <br>
-                        <a class="goalName" [routerLink]="['/usergroups']">Goal 4</a>
-                        <a class="goalDescription">Description Goal 4</a>
-                    </div>
-                    <div class="addGoal">
-                        <br>
-                        <a class="" [routerLink]="['/usergroups']">
-                            <fa-icon class="favIconAdd" [icon]="faPlus"></fa-icon>
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            
+        <!-- * Members and Goals of a GROUP -->
+        <div *ngIf="this.divName == 'membersGoals'">
+            <h1 class="groupTitle">Group Title</h1>
+            <h4 class="groupDescription">Group Description</h4>
+            <div class="groupContainer">
+                <!-- <br> -->
+                <div class="groupColumnLeft">
+                    <div class="membersBorder">
+                        <div class="titleGroups">Members</div>
+                        <a class="groups" [routerLink]="['/usergroups']">Member 1</a>
+                        <fa-icon class="favIconTrash" [icon]="faTrash"></fa-icon>
+                        <br>
+                        <a class="groups" [routerLink]="['/usergroups']">Member 2</a>
+                        <fa-icon class="favIconTrash" [icon]="faTrash"></fa-icon>
+                        <br>
+                        <a class="groups" [routerLink]="['/usergroups']">Member 3</a>
+                        <fa-icon class="favIconTrash" [icon]="faTrash"></fa-icon>
+                        <br>
+                        <a class="groups" [routerLink]="['/usergroups']">Member 4</a>
+                        <fa-icon class="favIconTrash" [icon]="faTrash"></fa-icon>
+                    </div>
+                    <div class="membersBorder">
+                        <input type="text" class="inputEmail" name="username" placeholder="User Email" ngModel />
+                        <fa-icon class="favIconAdd" [icon]="faPlus"></fa-icon>
+                    </div>
+                </div>
+                <div class="groupColumnRight">
+                    <div class="groupColumn goalsBorder">
+                        <div class="titleGroups">Goals</div>
+                        <div class="allGoals">
+                            <a class="goalName" [routerLink]="['/usergroups']">Goal 1</a>
+                            <a class="goalDescription">Description Goal 1</a>
+                            <br>
+                            <a class="goalName" [routerLink]="['/usergroups']">Goal 2</a>
+                            <a class="goalDescription">Description Goal 2</a>
+                            <br>
+                            <a class="goalName" [routerLink]="['/usergroups']">Goal 3</a>
+                            <a class="goalDescription">Description Goal 3</a>
+                            <br>
+                            <a class="goalName" [routerLink]="['/usergroups']">Goal 4</a>
+                            <a class="goalDescription">Description Goal 4</a>
+                        </div>
+                        <div class="addGoal">
+                            <br>
+                            <a class="" [routerLink]="['/usergroups']">
+                                <fa-icon class="favIconAdd" [icon]="faPlus"></fa-icon>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
-        <div class="groupContainer">
+        <!-- * Create individual dare -->
+        <div *ngIf="this.divName == 'createDare'" class="groupContainer">
             <div class="groupColumnRight">
                 <div class="groupColumn goalsBorder">
                     <div class="titleGroups">Create Dare to Member#2</div>
-                    <form #dareInformation (ngSubmit)="addDare(dareInformation)"> 
+                    <form #dareInformation (ngSubmit)="addDare(dareInformation)">
                         <div class="loginForm">
-                            <input type="text" name="title" placeholder="Title" ngModel/>
-                            <input type="text" name="description" placeholder="Description" ngModel/>
-                            <input type="text" name="points" placeholder="Points" ngModel/>
+                            <input type="text" name="title" placeholder="Title" ngModel />
+                            <input type="text" name="description" placeholder="Description" ngModel />
+                            <input type="text" name="points" placeholder="Points" ngModel />
                         </div>
-            
+
                         <button type="submit" value="submit" class="buttonRose"> Add </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- * Create Group -->
+        <div *ngIf="this.divName == 'createGroup'" class="groupContainer">
+            <div class="groupColumnRight">
+                <div class="groupColumn goalsBorder">
+                    <div class="titleGroups">Create Group</div>
+                    <form #groupInformation (ngSubmit)="createGroup(groupInformation)">
+                        <div class="loginForm">
+                            <input type="text" name="name" placeholder="Name" ngModel />
+                            <input type="text" name="description" placeholder="Description" ngModel />
+                        </div>
+
+                        <button type="submit" value="submit" class="buttonRose"> Add </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- * Join Group -->
+        <div *ngIf="this.divName == 'joinGroup'" class="groupContainer">
+            <div class="groupColumnRight">
+                <div class="groupColumn goalsBorder">
+                    <div class="titleGroups">Join Group</div>
+                    <form #groupInformation (ngSubmit)="joinGroup(groupInformation)">
+                        <div class="loginForm">
+                            <input type="text" name="groupname" placeholder="Group Name" ngModel />                        </div>
+
+                        <button type="submit" value="submit" class="buttonRose"> Join </button>
                     </form>
                 </div>
             </div>
