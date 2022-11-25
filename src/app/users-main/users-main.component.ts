@@ -36,27 +36,4 @@ export class UsersMainComponent implements OnInit {
     //   this.router.navigate(['/login']);
     // }
   }
-
-
-  getUserData() {
-
-    this.haveData = 0;
-    this.dataRequest = true;
-    this.adminService.getUserDetail(this.userName).subscribe(
-      (response) => {
-        let result = response;
-        console.log(result);
-
-        this.data = result;
-        if (result == ' ') {
-          this.haveData = 0;
-        } else {
-          this.haveData = this.haveData + 1;
-        }
-      },
-      (error) => {
-        console.log('error while getting Admin Data');
-      }
-    );
-  }
 }
