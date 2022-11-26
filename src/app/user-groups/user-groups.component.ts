@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { GroupService } from '../services/group.service';
 import { AdminService } from '../services/admin.service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { GroupDetail } from '../classes/group-detail';
 import { UsergroupDetail } from '../classes/usergroup-detail';
 
@@ -27,7 +27,17 @@ export class UserGroupsComponent implements OnInit {
     private adminService: AdminService,
     private groupService: GroupService,
     private router: Router,
-    ) {}
+    ) {
+      this.router.events.subscribe((ev) => {
+        if (ev instanceof NavigationEnd) { 
+          /* Your code goes here on every router change */
+          if(ev.url == "/usergroups"){
+            console.log("onInit  User-groups");
+            
+          }
+        }
+      });
+    }
 
   ngOnInit() {
     if (this.adminService.isLoggedIn()) {
