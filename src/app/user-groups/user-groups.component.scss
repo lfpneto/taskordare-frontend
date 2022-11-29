@@ -124,7 +124,11 @@ $third-color: #c1efff;
 
 .groups{
 	font-size: 23px;
-  cursor:default;
+  cursor: pointer;
+}
+
+.groups:hover{
+  color:#c1efff;
 }
 
 .goalName{

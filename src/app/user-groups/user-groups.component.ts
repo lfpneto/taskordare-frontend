@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { GroupService } from '../services/group.service';
 import { AdminService } from '../services/admin.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { GroupDetail } from '../classes/group-detail';
 import { UsergroupDetail } from '../classes/usergroup-detail';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 
 
 @Component({
@@ -14,11 +16,14 @@ import { UsergroupDetail } from '../classes/usergroup-detail';
 })
 
 
+
 export class UserGroupsComponent implements OnInit {
   faTrash = faTrash;
   faPlus = faPlus;
 
   divName = "nothing";
+
+  htmlToAdd:any;
   
   private groupDetail = new GroupDetail();
   private usergroupDetail = new UsergroupDetail();
@@ -27,13 +32,36 @@ export class UserGroupsComponent implements OnInit {
     private adminService: AdminService,
     private groupService: GroupService,
     private router: Router,
+    private sanitized: DomSanitizer
     ) {
       this.router.events.subscribe((ev) => {
         if (ev instanceof NavigationEnd) { 
           /* Your code goes here on every router change */
           if(ev.url == "/usergroups"){
-            console.log("onInit  User-groups");
-            
+            console.log("onInit  User-groups - start");
+            let result:any;
+
+
+            //todo: change to getUseGroup according to token
+            this.groupService.getAllGroups().subscribe(
+              (response) => {
+                result = response;
+                //console.log(result.data.Users);
+                if (result.status == "OK") {
+                  this.htmlToAdd = result.data.Users;  
+                }
+                if (result == -1) {
+                  alert(
+                    'error'
+                  );
+                }
+              },
+              (error) => {
+                console.log('Errors (CORS?) - ' + JSON.stringify(error));
+              }
+            );
+
+            console.log("onInit  User-groups - end");
           }
         }
       });
@@ -57,7 +85,9 @@ export class UserGroupsComponent implements OnInit {
   showCreateGroup(){
     this.divName = "createGroup"
   }
-  showGroupAndGoals(){
+  showGroupAndGoals(groupName:any){
+    //todo: get group members and goals
+    console.log(groupName)
     this.divName = "membersGoals"
   }
 
@@ -79,6 +109,7 @@ export class UserGroupsComponent implements OnInit {
         if (result.status == "CREATED") {
           console.log("Group Created")
           alert("Group Created")
+          
         }
         if (result == -1) {
           alert(
@@ -139,6 +170,11 @@ export class UserGroupsComponent implements OnInit {
       }
     );
 
+  }
+
+  transform(value :any) {
+    console.log(value)
+    return this.sanitized.bypassSecurityTrustHtml(value);
   }
 
 }
