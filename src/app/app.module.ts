@@ -9,6 +9,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';  
 import { FormsModule } from '@angular/forms';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ToastModule} from 'primeng/toast';
+import {RippleModule} from 'primeng/ripple';
+
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -46,6 +50,9 @@ import { UserGoalComponent } from './user-goal/user-goal.component';
     FontAwesomeModule,
     FormsModule,   //Assign FormsModule
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastModule,
+    RippleModule,
     RouterModule.forRoot([  
       {  
         path : '',  

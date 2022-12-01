@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';  
 import { AdminService } from './services/admin.service';
+import {ToastModule} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
+
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [MessageService]
 })
+
+
 export class AppComponent {
   title = 'angular';
   
@@ -16,10 +22,15 @@ export class AppComponent {
   isLoggedIn = false;
   loginPage = false;
 
-  constructor(private adminService: AdminService) {}
+  constructor(
+    private adminService: AdminService,
+    private messageService: MessageService, 
+    ) {}
 
   ngOnInit() {
-    console.log("ngOnInit do appComponent")
+
+    console.log("ngOnInit do appComponent");
+
     // console.log(localStorage.getItem('username'))
     
 
@@ -27,7 +38,8 @@ export class AppComponent {
 
   mainClick(){
     this.loginPage = false;
-    console.log("mainClick");
+
+
     this.isLoggedIn = this.adminService.isLoggedIn();
     if (this.isLoggedIn){
       if (localStorage.getItem('username') != null) {
