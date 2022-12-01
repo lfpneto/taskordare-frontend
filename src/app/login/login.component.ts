@@ -5,14 +5,16 @@ import { UserDetail } from '../classes/user-detail';
 import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
+import {MessageService} from 'primeng/api';
+// import { PrimeNGConfig } from 'primeng/api';
+
 
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-})
+  styleUrls: ['./login.component.scss']})
 
 
 export class LoginComponent implements OnInit {
@@ -20,9 +22,16 @@ export class LoginComponent implements OnInit {
   private userDetail = new UserDetail();
 
 
-  constructor(private adminService: AdminService, private router: Router) {}
+  constructor(
+    private adminService: AdminService, 
+    private router: Router,
+    private messageService: MessageService,
+    // private primengConfig: PrimeNGConfig
+    ) {}
 
   ngOnInit() {
+    // this.primengConfig.ripple = true;
+
     if (this.adminService.isLoggedIn()) {
       this.router.navigate(['/usermain']);
     } else {
@@ -36,6 +45,10 @@ export class LoginComponent implements OnInit {
     // result.userName = "username";
     // result.password = "password";
 
+    console.log("message1");
+        // this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
+        console.log("message2");
+
     this.userDetail.userName = LoginInformation.username.value;
     this.userDetail.password = LoginInformation.password.value;
 
@@ -43,6 +56,8 @@ export class LoginComponent implements OnInit {
       (response) => {
         let result =  response;
         //console.log(result)
+
+        
 
         if (result.token) {
 
@@ -60,6 +75,9 @@ export class LoginComponent implements OnInit {
               (response) => {
                 let result = response;
                 console.log(result);
+
+                this.messageService.add({severity:'info', summary: '', detail: 'Logged In', life:2000});
+
                 localStorage.setItem('id', result.data.User.id); //same here
                 this.router.navigate(['/usermain', result]);
 
