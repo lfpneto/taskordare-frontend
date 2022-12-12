@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastModule} from 'primeng/toast';
 import {RippleModule} from 'primeng/ripple';
 
-import { Interceptor } from './app.interceptor';
+//import { Interceptor } from './app.interceptor';
 
 
 
@@ -93,7 +93,7 @@ import { UserGroupTasksComponent } from './user-group-tasks/user-group-tasks.com
     ])
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
+    //{ provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

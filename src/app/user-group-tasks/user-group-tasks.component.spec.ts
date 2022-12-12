@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { UserGroupsComponent } from './user-groups.component';
+import { UserGroupTasksComponent } from './user-group-tasks.component';
 
-describe('UserGroupsComponent', () => {
-  let component: UserGroupsComponent;
-  let fixture: ComponentFixture<UserGroupsComponent>;
+describe('UserGroupTasksComponent', () => {
+  let component: UserGroupTasksComponent;
+  let fixture: ComponentFixture<UserGroupTasksComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      declarations: [ UserGroupsComponent ]
+      declarations: [ UserGroupTasksComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UserGroupsComponent);
+    fixture = TestBed.createComponent(UserGroupTasksComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

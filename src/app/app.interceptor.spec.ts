@@ -1,16 +1,19 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AppInterceptor } from './app.interceptor';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { Interceptor } from './app.interceptor';
 
 describe('AppInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      AppInterceptor
-      ]
+      Interceptor
+      ],
+      imports: [HttpClientTestingModule]
   }));
 
   it('should be created', () => {
-    const interceptor: AppInterceptor = TestBed.inject(AppInterceptor);
+    const interceptor: Interceptor = TestBed.inject(Interceptor);
     expect(interceptor).toBeTruthy();
   });
 });

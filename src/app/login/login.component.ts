@@ -5,7 +5,6 @@ import { UserDetail } from '../classes/user-detail';
 import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
-import {MessageService} from 'primeng/api';
 // import { PrimeNGConfig } from 'primeng/api';
 
 
@@ -25,7 +24,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private adminService: AdminService, 
     private router: Router,
-    private messageService: MessageService,
     // private primengConfig: PrimeNGConfig
     ) {}
 

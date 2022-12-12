@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  title: 'Task Or Dare',
+  apiURL: 'http://localhost:8080/'
 };

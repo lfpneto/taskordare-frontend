@@ -9,7 +9,7 @@
         <div class="border">
             <div class="titleGroups">⮟ My Groups ⮟</div>
             <div class="myGroups" id="myGroups" *ngFor="let group of htmlToAdd">
-                <a class="groups" (click)="showGroupAndGoals(group.groupName)">{{group.groupName}}</a>
+                <a class="groups" (click)="showGroupAndTasks(group.groupName)">{{group.groupName}}</a>
                 <!-- <a class="groups" (click)="showGroupAndGoals()">Group 1</a>
                 <br>
                 <a class="groups" (click)="showGroupAndGoals()">Group 2</a>
@@ -23,7 +23,7 @@
     <div class="columnRight">
 
         <!-- * Members and Goals of a GROUP -->
-        <div *ngIf="this.divName == 'membersGoals'">
+        <div *ngIf="this.divName == 'membersTaks'">
             <h1 class="groupTitle">Group Title</h1>
             <h4 class="groupDescription">Group Description</h4>
             <div class="groupContainer">
@@ -50,19 +50,19 @@
                 </div>
                 <div class="groupColumnRight">
                     <div class="groupColumn goalsBorder">
-                        <div class="titleGroups">Goals</div>
+                        <div class="titleGroups">Tasks</div>
                         <div class="allGoals">
-                            <a class="goalName" [routerLink]="['/usergroups']">Goal 1</a>
-                            <a class="goalDescription">Description Goal 1</a>
+                            <a class="goalName" [routerLink]="['/usergroups']">Task 1</a>
+                            <a class="goalDescription">Description Task 1</a>
                             <br>
-                            <a class="goalName" [routerLink]="['/usergroups']">Goal 2</a>
-                            <a class="goalDescription">Description Goal 2</a>
+                            <a class="goalName" [routerLink]="['/usergroups']">Task 2</a>
+                            <a class="goalDescription">Description Task 2</a>
                             <br>
-                            <a class="goalName" [routerLink]="['/usergroups']">Goal 3</a>
-                            <a class="goalDescription">Description Goal 3</a>
+                            <a class="goalName" [routerLink]="['/usergroups']">Task 3</a>
+                            <a class="goalDescription">Description Task 3</a>
                             <br>
-                            <a class="goalName" [routerLink]="['/usergroups']">Goal 4</a>
-                            <a class="goalDescription">Description Goal 4</a>
+                            <a class="goalName" [routerLink]="['/usergroups']">Task 4</a>
+                            <a class="goalDescription">Description Task 4</a>
                         </div>
                         <div class="addGoal">
                             <br>

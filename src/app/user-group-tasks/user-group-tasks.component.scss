@@ -1,0 +1,44 @@
+$secondary-color: #FFB3B3;
+$third-color: #c1efff;
+
+.container {
+    padding-left: 20%;
+    padding-right: 20%;
+    // display: flex;
+    text-align: center;
+}
+
+.form{
+    // width: 100%;
+    text-align: center;
+}
+
+
+.buttonRose{
+    width: 30%;
+    height: 30px;
+    background-color: $secondary-color;
+}
+
+.buttonRose:hover{
+    background-color: #fe6565;
+}
+
+.buttonRoseGoal{
+    font-size: 30px;
+    font-weight: bold;
+    width: 40%;
+    height: 50px;
+    background-color: $third-color;
+    // height: 20%;
+}
+
+.buttonRoseGoal:hover{
+    background-color: #73dcff;
+}
+
+h1.tittle {
+    font-size: 3rem;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }

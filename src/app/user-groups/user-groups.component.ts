@@ -85,10 +85,10 @@ export class UserGroupsComponent implements OnInit {
   showCreateGroup(){
     this.divName = "createGroup"
   }
-  showGroupAndGoals(groupName:any){
+  showGroupAndTasks(groupName:any){
     //todo: get group members and goals
     console.log(groupName)
-    this.divName = "membersGoals"
+    this.divName = "membersTaks"
   }
 
   createGroup(result:any){
