@@ -37,6 +37,7 @@ button{
 
 
 input[type="text"],
+input[type="file"],
 input[type="email"],
 input[type="password"] {
   font-family: Patrick Hand;
@@ -58,7 +59,8 @@ input[type="password"] {
 }
 
 input[type="text"]:focus,
-input[type="email"],
+input[type="email"]:focus,
+input[type="file"]:focus,
 input[type="password"]:focus {
   border-bottom: 2px solid #f1a009;
   color: white;
