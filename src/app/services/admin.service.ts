@@ -3,6 +3,7 @@ import {HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/ht
 import { Observable } from 'rxjs';  
 import { UserDetail} from '../classes/user-detail';  
 import { Router } from '@angular/router';  
+import { environment } from 'src/environments/environment';
 
 
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -13,7 +14,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AdminService {
 
   // Base URL  
-  private  baseUrl = "http://localhost:8080/";  
+  private  baseUrl = environment.apiURL;  
 
     constructor(private http: HttpClient, private router : Router) { }  
   
@@ -53,7 +54,7 @@ export class AdminService {
       // get the token from the localStorage as we have to work on this token.  
       let token = localStorage.getItem('token');  
     
-      console.log(token)
+      //console.log(token)
       // check whether if token have something or it is null.  
       if(!token)  
       {  
@@ -64,14 +65,9 @@ export class AdminService {
     
       if(token)  
       { 
-        console.log("DEBUG1") 
         let expirationDate = jwtHelper.getTokenExpirationDate(token);  
-        console.log("DEBUG2")
         // check whether the token is expired or not by calling isTokenExpired() method of JwtHelper class.  
-    
         let isExpired = jwtHelper.isTokenExpired(token);  
-    
-        console.log("DEBUG3")
         return !isExpired;      
       }   
 
@@ -100,4 +96,15 @@ export class AdminService {
 		return this.http.get(this.baseUrl + 'user/username/{username}?username=' + username);  
     }  
       
+    token(){
+      let token = localStorage.getItem('token');  
+      if(token){
+        console.log("Has Token");
+        return token;
+      }else{
+        console.log("No Token");
+        return "";
+      }
+      
+    }
   }  

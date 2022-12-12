@@ -10,13 +10,14 @@ import { UserDetail } from '../classes/user-detail';
 import { UsergroupDetail } from '../classes/usergroup-detail';
 import { Router } from '@angular/router';
 import { GroupDetail } from '../classes/group-detail';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GroupService {
-  private groupBaseUrl = 'http://localhost:8080/group';
-  private userGroupBaseUrl = 'http://localhost:8080/user-group';
+  private groupBaseUrl = environment.apiURL + 'group';
+  private userGroupBaseUrl = environment.apiURL + 'user-group';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -58,10 +59,8 @@ export class GroupService {
   getGroupInfo(groupName: any): Observable<any> {
     console.log(groupName);
 
-    // let groupInfo = this.http.get('http://localhost:8080/group/group-name/{groupName}?groupName=' + groupName);
-
     return this.http.get(
-      'http://localhost:8080/group/group-name/{groupName}?groupName=' +
+      this.groupBaseUrl + '/group-name/{groupName}?groupName=' +
         groupName
     );
 
@@ -87,7 +86,7 @@ export class GroupService {
   }
 
   getMembers(){
-    //http://localhost:8080/user-group/user-group/username/{name}?name=string
+
   }
 
   getAllGroups(){

@@ -41,13 +41,6 @@ export class LoginComponent implements OnInit {
 
 
   LoginForm(LoginInformation: any) {
-    // console.log("You have entered : " + result.password);
-    // result.userName = "username";
-    // result.password = "password";
-
-    console.log("message1");
-        // this.messageService.add({severity:'success', summary: 'Success', detail: 'Message Content'});
-        console.log("message2");
 
     this.userDetail.userName = LoginInformation.username.value;
     this.userDetail.password = LoginInformation.password.value;
@@ -59,33 +52,34 @@ export class LoginComponent implements OnInit {
 
         
 
-        if (result.token) {
+        if (result.jwtResponse.token) {
 
-          console.log("Token: " + result.token)
-          //let token = response.headers.get('Authorization');
-          let token = result.token;
-          //let token = "teste123";
-          localStorage.setItem('token', token); //need to talk to luis to rewrite this
+          let token = result.jwtResponse.token;
+          console.log("Token: " + token)
+          localStorage.setItem('token', token);
           localStorage.setItem('username', this.userDetail.userName)
+          localStorage.setItem('id', result.userId);
 
-          // this.appComponent.setUserNameText(this.userDetail.userName);
+          //this.messageService.add({severity:'info', summary: '', detail: 'Logged In', life:2000});
+          this.router.navigate(['/usermain']);
 
 
-            this.adminService.getUserDetail(this.userDetail.userName).subscribe(
-              (response) => {
-                let result = response;
-                console.log(result);
 
-                this.messageService.add({severity:'info', summary: '', detail: 'Logged In', life:2000});
+        //     this.adminService.getUserDetail(this.userDetail.userName).subscribe(
+        //       (response) => {
+        //         let result = response;
+        //         console.log(result);
 
-                localStorage.setItem('id', result.data.User.id); //same here
-                this.router.navigate(['/usermain', result]);
+        //         this.messageService.add({severity:'info', summary: '', detail: 'Logged In', life:2000});
 
-              },
-              (error) => {
-                console.log('error while getting Admin Data');
-              }
-            );
+        //         localStorage.setItem('id', result.data.User.id); //same here
+        //         this.router.navigate(['/usermain', result]);
+
+        //       },
+        //       (error) => {
+        //         console.log('error while getting Admin Data');
+        //       }
+        //     );
         }
         if (result == -1) {
           alert(
@@ -98,14 +92,5 @@ export class LoginComponent implements OnInit {
       }
     );
 
-    //let response =  this.http.post("http://localhost:8080/user/search-user", bodyBuilder);
-    //response.subscribe(data=>{console.log(data)});
-
-    // this.http.request('http://localhost:8080/user/search-user', bodyBuilder)
-    // .subscribe(response => console.log(response.text()))
-
-    // if (response.subscribe. == "User Not Found"){
-    //   this.userValidationError = true;
-    // }
   }
 }

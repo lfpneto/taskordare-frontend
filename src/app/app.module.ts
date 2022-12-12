@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';  
@@ -12,6 +12,9 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastModule} from 'primeng/toast';
 import {RippleModule} from 'primeng/ripple';
+
+import { Interceptor } from './app.interceptor';
+
 
 
 import { AppComponent } from './app.component';
@@ -22,11 +25,8 @@ import { RegisterComponent } from './register/register.component';
 import { UsersMainComponent } from './users-main/users-main.component'; 
 import { UserGroupsComponent } from './user-groups/user-groups.component';
 import { UserDaresComponent } from './user-dares/user-dares.component';
-import { UserGoalsComponent } from './user-goals/user-goals.component';
-import { UserGroupGoalComponent } from './user-group-goal/user-group-goal.component';
-import { UserGoalComponent } from './user-goal/user-goal.component';
-
-
+import { UserTasksComponent } from './user-tasks/user-tasks.component';
+import { UserGroupTasksComponent } from './user-group-tasks/user-group-tasks.component';
 
 
 
@@ -40,9 +40,8 @@ import { UserGoalComponent } from './user-goal/user-goal.component';
     LogoutComponent,
     UserGroupsComponent,
     UserDaresComponent,
-    UserGoalsComponent,
-    UserGroupGoalComponent,
-    UserGoalComponent,
+    UserTasksComponent,
+    UserGroupTasksComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,21 +82,19 @@ import { UserGoalComponent } from './user-goal/user-goal.component';
         component : UserDaresComponent
       },
       {
-        path : 'usergoals',  
-        component : UserGoalsComponent
+        path : 'usergrouptasks',  
+        component : UserGroupTasksComponent
       },
       {
-        path : 'usergroupgoal',  
-        component : UserGroupGoalComponent
-      },
-      {
-        path : 'usergoal',  
-        component : UserGoalComponent
+        path : 'usertasks',  
+        component : UserTasksComponent
       },
 
     ])
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

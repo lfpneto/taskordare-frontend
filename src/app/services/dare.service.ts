@@ -7,12 +7,13 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DareDetail } from '../classes/dare-detail';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DareService {
-  private baseUrl = 'http://localhost:8080/dares';
+  private baseUrl = environment.apiURL + 'dares';
 
 
   constructor(private http: HttpClient) {}

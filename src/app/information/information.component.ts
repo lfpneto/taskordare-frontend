@@ -14,8 +14,7 @@ export class InformationComponent implements OnInit {
   // constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
-    // let response =  this.http.get("http://localhost:8080/user/users");
-    // response.subscribe((data)=>console.log(data));
+
   }
 
 }

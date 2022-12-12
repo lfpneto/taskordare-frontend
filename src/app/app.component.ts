@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';  
 import { AdminService } from './services/admin.service';
 import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
+import { Router, NavigationEnd } from '@angular/router';
 
 
 
@@ -23,13 +24,25 @@ export class AppComponent {
   loginPage = false;
 
   constructor(
+    private router: Router,
     private adminService: AdminService,
     private messageService: MessageService, 
-    ) {}
+    ) {
+      this.router.events.subscribe((ev) => {
+        if (ev instanceof NavigationEnd) { 
+          /* Your code goes here on every router change */
+          if(ev.url == "/usermain"){
+            this.mainClick();
+          }
+        }
+      });
+
+
+    }
 
   ngOnInit() {
 
-    console.log("ngOnInit do appComponent");
+    //console.log("ngOnInit do appComponent");
 
     // console.log(localStorage.getItem('username'))
     
@@ -38,8 +51,6 @@ export class AppComponent {
 
   mainClick(){
     this.loginPage = false;
-
-
     this.isLoggedIn = this.adminService.isLoggedIn();
     if (this.isLoggedIn){
       if (localStorage.getItem('username') != null) {
@@ -51,19 +62,13 @@ export class AppComponent {
   }
 
   changeLoggedStatus(){
-    console.log("changeLoggedStatus");
-    console.log(this.isLoggedIn);
     this.isLoggedIn = !this.isLoggedIn;
-    console.log(this.isLoggedIn);
-    
-
     this.userNameLabel = "";
-    
   }
 
   inLoginPage(){
     this.loginPage = true;
-    console.log(this.loginPage)
+    //console.log(this.loginPage)
   }
 
   // setUserNameText(userDetail:string){
