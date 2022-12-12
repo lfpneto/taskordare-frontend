@@ -50,9 +50,7 @@
     vertical-align: middle;
   }
   
-  
-$base-spacing-unit: 24px;
-$half-spacing-unit: $base-spacing-unit / 2;
+
 
 $color-form-highlight: #EEEEEE;
 $primary-color: white;
@@ -70,13 +68,13 @@ $third-color: #c1efff;
 	display:flex;
 	width:100%;
 	background: wheat;
-	padding:($half-spacing-unit * 1.5) 0;
+	padding:(12px * 1.5) 0;
 }
 
 .table-row {
 	display:flex;
 	width:100%;
-	padding:($half-spacing-unit * 1.5) 0;
+	padding:(12px * 1.5) 0;
   // background-color: $third-color;
 	
 	// &:nth-of-type(odd) {
@@ -111,15 +109,15 @@ $third-color: #c1efff;
 	text-decoration: none;
 	position:relative;
 	display:inline-block;
-	padding-left:$base-spacing-unit;
-	padding-right:$base-spacing-unit;
+	padding-left:24px;
+	padding-right:24px;
 	
 	&::after {
 		content:'';
 		position:absolute;
-		right:-($half-spacing-unit * 1.5);
+		right:-(12px * 1.5);
 		color:white;
-		font-size:$half-spacing-unit;
+		font-size:12px;
 		top: 50%;
 		transform: translateY(-50%);
 	}
