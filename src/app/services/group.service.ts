@@ -18,6 +18,8 @@ import { environment } from 'src/environments/environment';
 export class GroupService {
   private groupBaseUrl = environment.apiURL + 'group';
   private userGroupBaseUrl = environment.apiURL + 'user-group';
+  private userProfileBaseUrl = environment.apiURL + 'user-profile';
+
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -92,18 +94,13 @@ export class GroupService {
   getAllGroups(){
     let url = this.groupBaseUrl + '/groups';
     console.log("getAllGroups")
-
-    // let token = localStorage.getItem('token');
-    
-    // let headers = new HttpHeaders({
-    //   'Content-Type': 'application/json',
-    //   'Authorization': `Bearer ${token}` });
-    // let options = { headers: headers };
-
-    // let headers2 = new HttpHeaders({ 'Content-Type': 'application/json' });
-    // headers2 = headers2.append('Authorization', 'Bearer ' + token); 
-
     return this.http.get(url);
+  }
+
+  getGroupsByUserId(id: any){
+    let url = this.userProfileBaseUrl + '/groups';
+    console.log(url + "/" + id);
+    return this.http.get(url + "/" + id);
   }
 
 }

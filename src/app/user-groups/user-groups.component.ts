@@ -41,14 +41,14 @@ export class UserGroupsComponent implements OnInit {
             console.log("onInit  User-groups - start");
             let result:any;
 
-
+            let userId = localStorage.getItem('id');
             //todo: change to getUseGroup according to token
-            this.groupService.getAllGroups().subscribe(
+            this.groupService.getGroupsByUserId(userId).subscribe(
               (response) => {
                 result = response;
                 //console.log(result.data.Users);
                 if (result.status == "OK") {
-                  this.htmlToAdd = result.data.Users;  
+                  this.htmlToAdd = result.data.Users[0].userGroupInfoDTO;  
                 }
                 if (result == -1) {
                   alert(
