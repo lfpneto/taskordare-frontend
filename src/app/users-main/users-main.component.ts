@@ -27,13 +27,8 @@ export class UsersMainComponent implements OnInit {
 
 
   ngOnInit() {
-    // if (this.adminService.isLoggedIn()) {
-    //   this.route.paramMap.subscribe((params) => {
-    //     console.log(params.get("userName"));
-    //     this.userName = params.get('userName');
-    //   });
-    // } else {
-    //   this.router.navigate(['/login']);
-    // }
+    if (!this.adminService.isLoggedIn()) {
+      this.router.navigate(['/']);
+    }
   }
 }

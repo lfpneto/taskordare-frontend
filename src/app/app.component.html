@@ -5,10 +5,10 @@
 		<h3 id="user"> {{userNameLabel}} </h3>
 	</div>
 	<div class="column">
-		<h1 class="Tittle"><a (click)="mainClick()" [routerLink]="['/']">Task Or Dare</a></h1>
+		<h1 class="Tittle"><a (click)="mainClick()" [routerLink]="['/usermain']">Task Or Dare</a></h1>
 	</div>
 	<div class="column loginCol">
-		<button class="buttonLogin buttonBlue" *ngIf="isLoggedIn" [routerLink]="['/usermain']"> Home </button>
+		<!-- <button class="buttonLogin buttonBlue" *ngIf="isLoggedIn" [routerLink]="['/usermain']"> Home </button> -->
 		<button class="buttonLogin" *ngIf="!isLoggedIn && !loginPage" [routerLink]="['/login']" (click)="inLoginPage()"
 			value="login"> Login </button>
 		<button class="buttonLogin" *ngIf="isLoggedIn" [routerLink]="['/logout']" (click)="changeLoggedStatus()"
