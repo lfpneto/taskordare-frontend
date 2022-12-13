@@ -89,6 +89,8 @@ export class UserGroupsComponent implements OnInit {
     //todo: get group members and goals
     console.log(groupName)
     this.divName = "membersTaks"
+    //todo list members and tasks
+    //todo onShowMembers only show the delete action if user is admin
   }
 
   createGroup(result:any){
@@ -107,9 +109,10 @@ export class UserGroupsComponent implements OnInit {
         let result =  response;
         console.log(result)
         if (result.status == "CREATED") {
-          console.log("Group Created")
-          alert("Group Created")
-          
+          //console.log("Group Created");
+          alert("Group Created");
+          this.divName = "nothing";
+          //todo: add user to the group who just got created
         }
         if (result == -1) {
           alert(
