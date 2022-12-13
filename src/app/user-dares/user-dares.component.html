@@ -17,8 +17,8 @@
         </div>
         <div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">Challenger</a></div>
         <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Time Left</a></div>
-        <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#"></a></div>
-        <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#"></a></div>
+        <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Image</a></div>
+        <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Status</a></div>
     </div>
     <div class="table-content">
         <div class="table-row" *ngFor="let dare of htmlToAdd">
@@ -28,12 +28,13 @@
             <div class="table-data">{{dare.ownerId}}</div>
             <div class="table-data">{{dare.daysleft}}</div>
             <div class="table-data">
-                <fa-icon class="favIconTrash" [icon]="faUpload"></fa-icon>
-                <a class="imgPath">
-                    ..//imagepath
+                <input type="file" *ngIf="showUploadImg" (change)="onUpload($event, dare)">
+                <fa-icon class="favIconTrash" type="file" (click)="showUploadImg = !showUploadImg" [icon]="faUpload"></fa-icon>
+                <a class="imgPath" target="_blank" href="{{dare.url}}">
+                    {{dare.url}}
                 </a>
             </div>
-            <div class="table-data"><input class="checkbox" type="checkbox"></div>
+            <div class="table-data"><input class="checkbox" (click)="changeStatusChecked(dare)" [checked]="dare.status" type="checkbox"></div>
 
         </div>
         <!-- <div class="table-row">
