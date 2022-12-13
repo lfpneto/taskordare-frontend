@@ -108,7 +108,18 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "configurations": {
+            "production": {
+              "browserTarget": "angular:build:production",
+              "proxyConfig": "./proxy.conf.json"
+            },
+            "development": {
+              "browserTarget": "angular:build:development",
+              "proxyConfig": "./proxy.conf.json"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
