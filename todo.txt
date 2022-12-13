@@ -1,0 +1,21 @@
+group-controller:
+- when a group is created, also add the user who created to the user_group table and set him as admin
+- get all members from a group
+- kick a member from a group if the one who kicking is admin (i will also hide the icon to kick if he is not admin but double verification is better)
+- set a member admin
+- remove a member from admin
+- invite someone to join a group (new table?) or just brute force add him by his email
+- way to join a group by a secret code (new column on the group table)
+
+tasks-controller
+- get all tasks from a group
+- create a new task in a group
+- get all tasks from a user
+- update a task (not available to update points)
+
+dares-controller
+- create a dare
+- update a dare (not available to update points)
+- delete dare
+dares right now dont have points because the points are associated with the user to the group, so either we associate dares again to the groups or create a reward column in the dares as type string just to at least have some logic in this, dares right now have no challenger and no accepenter player
+
