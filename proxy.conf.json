@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": "https://freeimage.host/api/1",
+      "target": "https://taskordare-production-796a.up.railway.app/",
       "secure": true,
       "changeOrigin": true
     }
