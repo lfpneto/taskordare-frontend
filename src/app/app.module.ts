@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BearerInterceptor } from './bearer.interceptor';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';  
@@ -28,6 +29,7 @@ import { UserDaresComponent } from './user-dares/user-dares.component';
 import { UserTasksComponent } from './user-tasks/user-tasks.component';
 import { UserGroupTasksComponent } from './user-group-tasks/user-group-tasks.component';
 import { CreateEditDareTasksComponent } from './create-edit-dare-tasks/create-edit-dare-tasks.component';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -99,6 +101,15 @@ import { CreateEditDareTasksComponent } from './create-edit-dare-tasks/create-ed
     ])
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BearerInterceptor,
+      multi: true,
+    },
+    { 
+      provide: 'BASE_URL', 
+      useValue: environment.apiURL
+    },
     //{ provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
   ],
   bootstrap: [AppComponent]

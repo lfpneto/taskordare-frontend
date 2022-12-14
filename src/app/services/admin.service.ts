@@ -45,6 +45,15 @@ export class AdminService {
     /* 
     * Check whether User is loggedIn or not. 
     */  
+
+    getToken(){
+      let token = localStorage.getItem('token');  
+      if (token) {
+        return token;
+      }else{
+        return "";
+      }
+    }
     
     isLoggedIn() {   
     
