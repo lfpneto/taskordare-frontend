@@ -4,11 +4,10 @@
             <img class="image inline vertical" src="../../assets/groups.png">
             <h2 class="inline leftspace grouptitle"> Groups </h2>
         </div>
-        <button class="button" (click)="showJoinGroup()">-> Join</button>
-        <button class="button" (click)="showCreateGroup()">+ Create</button>
+        <!-- <button class="button" (click)="showJoinGroup()">-> Join</button> -->
         <div class="border">
             <div class="titleGroups">⮟ My Groups ⮟</div>
-            <div class="myGroups" id="myGroups" *ngFor="let group of htmlToAdd">
+            <div class="myGroups" id="myGroups" *ngFor="let group of groupsOfUser">
                 <a class="groups" (click)="showGroupAndTasks(group)">{{group.groupName}}</a>
                 <!-- <a class="groups" (click)="showGroupAndGoals()">Group 1</a>
                 <br>
@@ -19,6 +18,8 @@
                 <a class="groups" (click)="showGroupAndGoals()">Group 4</a> -->
             </div>
         </div>
+        <button class="button" (click)="showCreateGroup()">+ Create</button>
+
     </div>
     <div class="columnRight">
 
@@ -33,11 +34,13 @@
                 <div class="groupColumnLeft">
                     <div class="membersBorder">
                         <div class="titleGroups">Members</div>
-                        <a class="groups" [routerLink]="['/usergroups']">Member 1</a>
-                        <fa-icon class="favIconMemberOption" (click)="this.memberOptions = !this.memberOptions" [icon]="faEllipsisV"></fa-icon>
-                        <div *ngIf="memberOptions" class="options">
-                            <a class="addDare">Add Dare</a>
-                            <fa-icon *ngIf="this.groupDetail.permission == 1" (click)="removeMember()" class="favIconTrash" [icon]="faTrash"></fa-icon>
+                        <div class="allMembers" *ngFor="let member of membersOfGroup">
+                            <a class="membersOfGroup" [routerLink]="['/usergroups']">{{member.userName}}</a>
+                            <fa-icon class="favIconMemberOption" (click)="member.showOptions = !member.showOptions" [icon]="faEllipsisV"></fa-icon>
+                            <div *ngIf="member.showOptions" class="options">
+                                <a class="addDare" (click)="addDare(member.id)">Add Dare</a>
+                                <fa-icon *ngIf="this.groupDetail.permission == 1" (click)="removeMember(member.id, groupDetail.groupId)" class="favIconTrash" [icon]="faTrash"></fa-icon>
+                            </div>
                         </div>
                     </div>
                     <div *ngIf="this.groupDetail.permission == 1" class="membersBorder">

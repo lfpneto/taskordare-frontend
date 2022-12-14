@@ -55,8 +55,8 @@ export class GroupService {
     return this.http.post(url, usergroupDetail);
   }
 
-  getMembers(id: any){
-    let url = this.userProfileBaseUrl + '/get-members';
+  getMembersOfGroup(id: any){
+    let url = this.groupConfigBaseUrl + '/get-members';
     return this.http.get(url + "/" + id);
   }
 
@@ -80,6 +80,17 @@ export class GroupService {
       "role": 0
     }
     let url = this.groupConfigBaseUrl + '/add-user';
+    return this.http.post(url, formData);
+  }
+
+  removeUserOffGroupById(userId: any, groupId: number){
+    let formData = {
+      "adminId": parseInt(localStorage.getItem('id') || "0"),
+      "userId": userId,
+      "groupdId": groupId
+    }
+    console.log(formData);
+    let url = this.groupConfigBaseUrl + '/remove-user';
     return this.http.post(url, formData);
   }
 

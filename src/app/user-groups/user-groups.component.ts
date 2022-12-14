@@ -6,6 +6,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { GroupDetail } from '../classes/group-detail';
 import { UsergroupDetail } from '../classes/usergroup-detail';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -25,9 +26,9 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
 
   divName = "nothing";
 
-  htmlToAdd:any;
+  groupsOfUser:any;
+  membersOfGroup: any;
 
-  memberOptions:boolean = false;
   
   public groupDetail = new GroupDetail();
   private usergroupDetail = new UsergroupDetail();
@@ -36,7 +37,8 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
     private adminService: AdminService,
     private groupService: GroupService,
     private router: Router,
-    private sanitized: DomSanitizer
+    private sanitized: DomSanitizer,
+    private toastr: ToastrService
     ) {
       /*this.myObserver =*/ this.router.events.subscribe((ev) => {
         if (ev instanceof NavigationEnd) { 
@@ -52,7 +54,7 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
                 result = response;
                 //console.log(result.data.Users);
                 if (result.status == "OK") {
-                  this.htmlToAdd = result.data.Users[0].userGroupInfoDTO;  
+                  this.groupsOfUser = result.data.Users[0].userGroupInfoDTO;  
                 }
                 if (result == -1) {
                   alert(
@@ -98,9 +100,32 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
   showGroupAndTasks(group: GroupDetail){
     this.divName = "membersTaks"
     //give selected group to the constructor
-    console.log(group.description)
+    //console.log(group.description)
     this.groupDetail = group;
-    //todo list members and tasks
+    //list members
+    this.groupService.getMembersOfGroup(group.groupId).subscribe(
+      (response) => {
+        let result : any;
+        result =  response;
+        //console.log(result);
+        if(result.status == "OK"){
+          this.membersOfGroup = result.data.Users;
+          for (let index = 0; index < this.membersOfGroup.length; index++) {
+            this.membersOfGroup[index].showOptions = false;
+            index++;
+          }
+          console.log(this.membersOfGroup)
+        }else{
+          alert("Not valid members.")
+        }
+      },
+      (error) => {
+        console.log('Errors (CORS?) - ' + JSON.stringify(error));
+      }
+    );
+    
+    
+    //todo list tasks
     //todo onShowMembers only show the delete action if user is admin
   }
 
@@ -187,7 +212,7 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
       (response) => {
         let result : any;
         result =  response;
-        console.log(result);
+        //console.log(result);
         if(result.status == "OK"){
           alert("User added to the group");
           window.location.reload();
@@ -201,8 +226,23 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
     );
   }
 
-  removeMember(){
-
+  removeMember(userId: any, groupId: any){
+    this.toastr.success('Hello world!', 'Toastr fun!');
+    // this.groupService.removeUserOffGroupById(userId, groupId).subscribe(
+    //   (response) => {
+    //     let result : any;
+    //     result =  response;
+    //     if(result.status == "OK"){
+    //       alert("User removed from the group");
+    //       window.location.reload();
+    //     }else{
+    //       alert("User not removed;")
+    //     }
+    //   },
+    //   (error) => {
+    //     console.log('Errors (CORS?) - ' + JSON.stringify(error));
+    //   }
+    // );
   }
 
 }

@@ -14,7 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastModule} from 'primeng/toast';
 import {RippleModule} from 'primeng/ripple';
 
+
 //import { Interceptor } from './app.interceptor';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -54,6 +56,7 @@ import { environment } from 'src/environments/environment';
     FormsModule,   //Assign FormsModule
     HttpClientModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(), // ToastrModule added
     ToastModule,
     RippleModule,
     RouterModule.forRoot([  
