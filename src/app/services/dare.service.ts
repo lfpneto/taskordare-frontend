@@ -16,8 +16,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class DareService {
   private baseUrl = environment.apiURL + 'dares';
   private baseUserProfileUrl = environment.apiURL + 'user-profile';
-  private imageAPIUploader =
-    'https://freeimage.host/api/1/upload?key=6d207e02198a847aa98d0a2a901485a5';
 
   constructor(private http: HttpClient, private _sanitizer: DomSanitizer) {}
 
@@ -64,6 +62,9 @@ export class DareService {
     const formData = new FormData(); // Store form name as "file" with file data
     formData.append('source', file, file.name); // Make http post request over api // with formData as req
     console.log(formData);
-    return this.http.post(this.imageAPIUploader, formData)
+    //return this.http.post(this.imageAPIUploader, formData)
+    let imageAPIUploader ='https://freeimage.host/api';
+
+    return this.http.post(imageAPIUploader + "/1/upload?key=6d207e02198a847aa98d0a2a901485a5", formData)
   }
 }
