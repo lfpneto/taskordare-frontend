@@ -1,0 +1,23 @@
+<div class="container">
+    <form #dareInfo *ngIf="taskOrDare == 'dare'" (ngSubmit)="addDareOrTask(dareInfo)">
+        <h1 class="tittle">Add/Edit Dare</h1>
+        <input type="text" name="name" placeholder="Name" ngModel />
+        <input type="text" name="description" placeholder="Description" ngModel />
+        <input type="text" name="reward" placeholder="Reward" ngModel />
+        
+        Deadline: <input type="date" name="date" placeholder="Date" ngModel />
+        <br>
+        <button type="submit" value="submit" class="buttonRose buttonRoseGoal">Add Dare</button>
+    </form>
+
+    <form #taskInfo *ngIf="taskOrDare == 'task'" (ngSubmit)="addDareOrTask(taskInfo)">
+        <h1 class="tittle">Add/Edit Task</h1>
+        <input type="text" name="name" placeholder="Name" ngModel />
+        <input type="text" name="description" placeholder="Description" ngModel />
+        <input type="text" name="points" placeholder="Points" ngModel />
+        <br>Your points: {{points}}<br>
+        Deadline: <input type="date" name="date" placeholder="Date" ngModel />
+        <br>
+        <button type="submit" value="submit" class="buttonRose buttonRoseGoal">Add Task</button>
+    </form>
+</div>

@@ -27,6 +27,7 @@ import { UserGroupsComponent } from './user-groups/user-groups.component';
 import { UserDaresComponent } from './user-dares/user-dares.component';
 import { UserTasksComponent } from './user-tasks/user-tasks.component';
 import { UserGroupTasksComponent } from './user-group-tasks/user-group-tasks.component';
+import { CreateEditDareTasksComponent } from './create-edit-dare-tasks/create-edit-dare-tasks.component';
 
 
 
@@ -42,6 +43,7 @@ import { UserGroupTasksComponent } from './user-group-tasks/user-group-tasks.com
     UserDaresComponent,
     UserTasksComponent,
     UserGroupTasksComponent,
+    CreateEditDareTasksComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +90,10 @@ import { UserGroupTasksComponent } from './user-group-tasks/user-group-tasks.com
       {
         path : 'usertasks',  
         component : UserTasksComponent
+      },
+      {
+        path : 'createeditdaretasks',  
+        component : CreateEditDareTasksComponent
       },
 
     ])
