@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { faTrash, faPlus, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { GroupService } from '../services/group.service';
 import { AdminService } from '../services/admin.service';
 import { Router, NavigationEnd } from '@angular/router';
@@ -17,15 +17,19 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 
 
-export class UserGroupsComponent implements OnInit {
+export class UserGroupsComponent implements OnInit, OnDestroy {
+  myObserver: any;
   faTrash = faTrash;
   faPlus = faPlus;
+  faEllipsisV = faEllipsisV;
 
   divName = "nothing";
 
   htmlToAdd:any;
+
+  memberOptions:boolean = false;
   
-  private groupDetail = new GroupDetail();
+  public groupDetail = new GroupDetail();
   private usergroupDetail = new UsergroupDetail();
 
   constructor(
@@ -34,11 +38,11 @@ export class UserGroupsComponent implements OnInit {
     private router: Router,
     private sanitized: DomSanitizer
     ) {
-      this.router.events.subscribe((ev) => {
+      /*this.myObserver =*/ this.router.events.subscribe((ev) => {
         if (ev instanceof NavigationEnd) { 
           /* Your code goes here on every router change */
           if(ev.url == "/usergroups"){
-            console.log("onInit  User-groups - start");
+            //console.log("onInit  User-groups - start");
             let result:any;
 
             let userId = localStorage.getItem('id');
@@ -61,7 +65,7 @@ export class UserGroupsComponent implements OnInit {
               }
             );
 
-            console.log("onInit  User-groups - end");
+            //console.log("onInit  User-groups - end");
           }
         }
       });
@@ -75,6 +79,12 @@ export class UserGroupsComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    console.log("destroyed");
+    // this.myObserver.unsubscribe();
+  }
+
+
   addDare(value:any){
 
   }
@@ -85,21 +95,17 @@ export class UserGroupsComponent implements OnInit {
   showCreateGroup(){
     this.divName = "createGroup"
   }
-  showGroupAndTasks(groupName:any){
-    //todo: get group members and goals
-    console.log(groupName)
+  showGroupAndTasks(group: GroupDetail){
     this.divName = "membersTaks"
+    //give selected group to the constructor
+    console.log(group.description)
+    this.groupDetail = group;
     //todo list members and tasks
     //todo onShowMembers only show the delete action if user is admin
   }
 
   createGroup(result:any){
-    // console.log("haahahh: " + value.name.value)
-    // var UserDetail = {
-    //   firstName, 
-    //   firstName2: , 
-    // };
-
+    this.groupDetail.groupId = 0;
     this.groupDetail.groupName = result.name.value;
     this.groupDetail.description = result.description.value;
 
@@ -108,10 +114,11 @@ export class UserGroupsComponent implements OnInit {
       (response) => {
         let result =  response;
         console.log(result)
-        if (result.status == "CREATED") {
+        if (result.status == "OK") {
           //console.log("Group Created");
           alert("Group Created");
           this.divName = "nothing";
+          window.location.reload();
           //todo: add user to the group who just got created
         }
         if (result == -1) {
@@ -175,9 +182,27 @@ export class UserGroupsComponent implements OnInit {
 
   }
 
-  transform(value :any) {
-    console.log(value)
-    return this.sanitized.bypassSecurityTrustHtml(value);
+  addUserByEmail(userEmailForm :any) {
+    this.groupService.addUserToGroupByEmail(userEmailForm.email.value, this.groupDetail.groupId).subscribe(
+      (response) => {
+        let result : any;
+        result =  response;
+        console.log(result);
+        if(result.status == "OK"){
+          alert("User added to the group");
+          window.location.reload();
+        }else{
+          alert("Not a valid User.")
+        }
+      },
+      (error) => {
+        console.log('Errors (CORS?) - ' + JSON.stringify(error));
+      }
+    );
+  }
+
+  removeMember(){
+
   }
 
 }

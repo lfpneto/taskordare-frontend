@@ -21,6 +21,10 @@ $third-color: #c1efff;
 	font-size: 25px;
 }
 
+.groupAdmin{
+  font-size: 20px;
+}
+
 .favIconTrash{
   margin-left: 15px;
   // color: red !important;
@@ -45,6 +49,17 @@ $third-color: #c1efff;
   border-radius: 40%;
 }
 .favIconAdd:hover{
+  background-color: $third-color;
+}
+
+.favIconMemberOption{
+  margin-left: 5px;
+  cursor: pointer;
+  padding: 3px;
+  border: 10px;
+  border-radius: 30%;
+}
+.favIconMemberOption:hover{
   background-color: $third-color;
 }
 
@@ -194,3 +209,29 @@ $third-color: #c1efff;
   text-align: center;
 }
 
+.buttonAddUserByEmail {
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: 30px;
+}
+
+.superSmall{
+  margin-left: 5px;
+  font-size: 26px;
+  color: #ffb3b3f0;
+}
+
+.mediumSmall{
+  margin-left: 5px;
+  font-size: 26px;
+}
+
+.addDare{
+	font-size: 18px;
+  cursor: pointer;
+}
+
+.addDare:hover{
+  background-color: #c1efff;
+  border-radius: 10px;
+}

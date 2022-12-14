@@ -9,7 +9,7 @@
         <div class="border">
             <div class="titleGroups">⮟ My Groups ⮟</div>
             <div class="myGroups" id="myGroups" *ngFor="let group of htmlToAdd">
-                <a class="groups" (click)="showGroupAndTasks(group.groupName)">{{group.groupName}}</a>
+                <a class="groups" (click)="showGroupAndTasks(group)">{{group.groupName}}</a>
                 <!-- <a class="groups" (click)="showGroupAndGoals()">Group 1</a>
                 <br>
                 <a class="groups" (click)="showGroupAndGoals()">Group 2</a>
@@ -24,28 +24,29 @@
 
         <!-- * Members and Goals of a GROUP -->
         <div *ngIf="this.divName == 'membersTaks'">
-            <h1 class="groupTitle">Group Title</h1>
-            <h4 class="groupDescription">Group Description</h4>
+            <h1 class="groupTitle">{{this.groupDetail.groupName}}</h1>
+            <a class="superSmall">Id: {{groupDetail.groupId}}</a>
+            <a class="mediumSmall">{{this.groupDetail.permission == 1 ? 'Admin' : ''}}</a>
+            <h4 class="groupDescription">{{groupDetail.description}}</h4>
             <div class="groupContainer">
                 <!-- <br> -->
                 <div class="groupColumnLeft">
                     <div class="membersBorder">
                         <div class="titleGroups">Members</div>
                         <a class="groups" [routerLink]="['/usergroups']">Member 1</a>
-                        <fa-icon class="favIconTrash" [icon]="faTrash"></fa-icon>
-                        <br>
-                        <a class="groups" [routerLink]="['/usergroups']">Member 2</a>
-                        <fa-icon class="favIconTrash" [icon]="faTrash"></fa-icon>
-                        <br>
-                        <a class="groups" [routerLink]="['/usergroups']">Member 3</a>
-                        <fa-icon class="favIconTrash" [icon]="faTrash"></fa-icon>
-                        <br>
-                        <a class="groups" [routerLink]="['/usergroups']">Member 4</a>
-                        <fa-icon class="favIconTrash" [icon]="faTrash"></fa-icon>
+                        <fa-icon class="favIconMemberOption" (click)="this.memberOptions = !this.memberOptions" [icon]="faEllipsisV"></fa-icon>
+                        <div *ngIf="memberOptions" class="options">
+                            <a class="addDare">Add Dare</a>
+                            <fa-icon *ngIf="this.groupDetail.permission == 1" (click)="removeMember()" class="favIconTrash" [icon]="faTrash"></fa-icon>
+                        </div>
                     </div>
-                    <div class="membersBorder">
-                        <input type="text" class="inputEmail" name="username" placeholder="User Email" ngModel />
-                        <fa-icon class="favIconAdd" [icon]="faPlus"></fa-icon>
+                    <div *ngIf="this.groupDetail.permission == 1" class="membersBorder">
+                        <form #userEmailForm (ngSubmit)="addUserByEmail(userEmailForm)"> 
+                            <input type="text" class="inputEmail" name="email" placeholder="User Email" ngModel />
+                            <button type="submit" value="submit" class="buttonAddUserByEmail">
+                                <fa-icon class="favIconAdd" type="submit" value="submit" [icon]="faPlus"></fa-icon>
+                            </button>
+                        </form>
                     </div>
                 </div>
                 <div class="groupColumnRight">

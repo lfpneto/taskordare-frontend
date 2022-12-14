@@ -11,12 +11,14 @@ import { UsergroupDetail } from '../classes/usergroup-detail';
 import { Router } from '@angular/router';
 import { GroupDetail } from '../classes/group-detail';
 import { environment } from 'src/environments/environment';
+import { group } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GroupService {
   private groupBaseUrl = environment.apiURL + 'group';
+  private groupConfigBaseUrl = environment.apiURL + 'group-config';
   private userGroupBaseUrl = environment.apiURL + 'user-group';
   private userProfileBaseUrl = environment.apiURL + 'user-profile';
 
@@ -26,38 +28,19 @@ export class GroupService {
 
 
   createGroup(groupDetail: GroupDetail): Observable<any> {
-    console.log(groupDetail);
-    
-    //let url = this.groupBaseUrl + "/create";
-    //return this.http.post(url,groupDetail);
-
-    let url = this.groupBaseUrl + '/create';
-    // let token = localStorage.getItem('token');
-
-
-    //const headers = new HttpParams().set('Authorization', "Bearer " + token);
-    // const headerDict = {
-    //   /* 'Content-Type': 'application/json',
-    //   'Accept': 'application/json',
-    //   'Access-Control-Allow-Headers': 'Content-Type', */
-    //   'Authorization': 'Bearer ' + token
-    // }
-    
-    // let headers = new HttpHeaders({
-    //   'Content-Type': 'application/json',
-    //   'Authorization': `Bearer ${token}` });
-    // let options = { headers: headers };
-    // console.log(options.headers);
-
-    return this.http.post(url, groupDetail);
-
-    // TODO: this under - Authetication Bearer via Token
-    // let url = this.groupBaseUrl + "/create";
-    // 	return this.http.get(url,{
-    // 	headers: {"Authorization" : "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdHJpbmciLCJpYXQiOjE2NjkzNzMwMTUsImV4cCI6MTY2OTM5MTAxNX0.mnFwXzRUMTbmYU0xfRn78xgVDQtFJtEbty5-oPukUHQ"},
-    // 	params: groupDetail
-    // });
+    let formData = {
+      "userId" : localStorage.getItem('id'),
+      "group" : {
+        "id": 0,
+        "groupName": groupDetail.groupName,
+        "description": groupDetail.description
+      }
+    };
+    console.log(formData);
+    let url = this.groupConfigBaseUrl + '/create-group';
+    return this.http.post(url, formData);
   }
+
   getGroupInfo(groupName: any): Observable<any> {
     console.log(groupName);
 
@@ -65,30 +48,16 @@ export class GroupService {
       this.groupBaseUrl + '/group-name/{groupName}?groupName=' +
         groupName
     );
-
-    // TODO: this under - Authetication Bearer via Token
-    // let url = this.groupBaseUrl + "/create";
-    // 	return this.http.get(url,{
-    // 	headers: {"Authorization" : "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdHJpbmciLCJpYXQiOjE2NjkzNzMwMTUsImV4cCI6MTY2OTM5MTAxNX0.mnFwXzRUMTbmYU0xfRn78xgVDQtFJtEbty5-oPukUHQ"},
-    // 	params: groupDetail
-    // });
   }
-  joinGroup(usergroupDetail: UsergroupDetail): Observable<any> {
-    console.log(usergroupDetail);
 
+  joinGroup(usergroupDetail: UsergroupDetail): Observable<any> {
     let url = this.userGroupBaseUrl + '/update';
     return this.http.post(url, usergroupDetail);
-
-    // TODO: this under - Authetication Bearer via Token
-    // let url = this.groupBaseUrl + "/create";
-    // 	return this.http.get(url,{
-    // 	headers: {"Authorization" : "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdHJpbmciLCJpYXQiOjE2NjkzNzMwMTUsImV4cCI6MTY2OTM5MTAxNX0.mnFwXzRUMTbmYU0xfRn78xgVDQtFJtEbty5-oPukUHQ"},
-    // 	params: groupDetail
-    // });
   }
 
-  getMembers(){
-
+  getMembers(id: any){
+    let url = this.userProfileBaseUrl + '/get-members';
+    return this.http.get(url + "/" + id);
   }
 
   getAllGroups(){
@@ -101,6 +70,17 @@ export class GroupService {
     let url = this.userProfileBaseUrl + '/groups';
     console.log(url + "/" + id);
     return this.http.get(url + "/" + id);
+  }
+
+  addUserToGroupByEmail(email: any, groupId: number){
+    let formData = {
+      "adminUserId": localStorage.getItem('id'),
+      "email": email,
+      "groupId": groupId,
+      "role": 0
+    }
+    let url = this.groupConfigBaseUrl + '/add-user';
+    return this.http.post(url, formData);
   }
 
 }
