@@ -33,7 +33,6 @@ export class UserDaresComponent implements OnInit {
         /* Your code goes here on every router change */
         if (ev.url == '/userdares') {
           let result: any;
-          //todo: change to getUserDares according to token
           let userId = localStorage.getItem('id');
           this.dareService.getUserDares(userId).subscribe(
             (response) => {

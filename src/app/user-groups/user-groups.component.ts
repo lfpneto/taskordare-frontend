@@ -48,7 +48,6 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
             let result:any;
 
             let userId = localStorage.getItem('id');
-            //todo: change to getUseGroup according to token
             this.groupService.getGroupsByUserId(userId).subscribe(
               (response) => {
                 result = response;
@@ -208,8 +207,8 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
         result =  response;
         //console.log(result);
         if(result.status == "OK"){
-          this.toastr.success('User email: ' + userEmailForm.email.value +' added to the group', 'Success');
-          window.location.reload();
+          this.toastr.success('User with the email: ' + userEmailForm.email.value +' added to the group', 'Success');
+          this.divName = "nothing";
         }else{
           this.toastr.info('Not a valid User', 'Inform');
         }
@@ -226,8 +225,8 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
         let result : any;
         result =  response;
         if(result.status == "OK"){
-          window.location.reload();
-          this.toastr.info('Member <b>' + userName + '</b> Removed', 'Info');
+          this.toastr.info('Member ' + userName + ' Removed', 'Info');
+          this.divName = "nothing";
 
         }else{
           this.toastr.error('You cant remove the creator of the group', 'Error');
