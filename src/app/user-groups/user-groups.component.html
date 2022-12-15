@@ -27,7 +27,7 @@
         <div *ngIf="this.divName == 'membersTaks'">
             <h1 class="groupTitle">{{this.groupDetail.groupName}}</h1>
             <a class="superSmall">Id: {{groupDetail.groupId}}</a>
-            <a class="mediumSmall">{{this.groupDetail.permission == 1 ? 'Admin' : ''}}</a>
+            <a class="mediumSmall">{{this.groupDetail.permission <= 1 ? this.groupDetail.permission == 0 ? 'Creator' : 'Admin' : 'Normal'}}</a>
             <h4 class="groupDescription">{{groupDetail.description}}</h4>
             <div class="groupContainer">
                 <!-- <br> -->
@@ -39,7 +39,7 @@
                             <fa-icon class="favIconMemberOption" (click)="member.showOptions = !member.showOptions" [icon]="faEllipsisV"></fa-icon>
                             <div *ngIf="member.showOptions" class="options">
                                 <a class="addDare" (click)="addDare(member.id)">Add Dare</a>
-                                <fa-icon *ngIf="this.groupDetail.permission == 1" (click)="removeMember(member.id, groupDetail.groupId, member.userName)" class="favIconTrash" [icon]="faTrash"></fa-icon>
+                                <fa-icon *ngIf="this.groupDetail.permission == 0 || this.groupDetail.permission == 1" (click)="removeMember(member.id, groupDetail.groupId, member.userName)" class="favIconTrash" [icon]="faTrash"></fa-icon>
                             </div>
                         </div>
                     </div>

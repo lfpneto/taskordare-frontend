@@ -54,7 +54,8 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
                 result = response;
                 //console.log(result.data.Users);
                 if (result.status == "OK") {
-                  this.groupsOfUser = result.data.Users[0].userGroupInfoDTO;  
+                  this.groupsOfUser = result.data.Users[0].userGroupInfoDTO; 
+                  //todo: show user poiints in each group 
                 }
                 if (result == -1) {
                   this.toastr.error('Something failed', 'Error');
@@ -229,7 +230,7 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
           this.toastr.info('Member <b>' + userName + '</b> Removed', 'Info');
 
         }else{
-          this.toastr.error('Something failed removing user', 'Error');
+          this.toastr.error('You cant remove the creator of the group', 'Error');
         }
       },
       (error) => {
