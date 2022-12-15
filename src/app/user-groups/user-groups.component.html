@@ -25,7 +25,7 @@
 
         <!-- * Members and Goals of a GROUP -->
         <div *ngIf="this.divName == 'membersTaks'">
-            <a class="superSmall">GroupId: {{groupDetail.groupId}}</a>
+            <a class="superSmall">GroupId: {{this.groupDetail.groupId}}</a>
             <h1 class="groupTitle">{{this.groupDetail.groupName}}</h1>
             <a class="medium">{{this.groupDetail.points}}</a><br>
             <a class="mediumSmall">{{this.groupDetail.permission <= 1 ? this.groupDetail.permission == 0 ? 'Creator' : 'Admin' : 'Normal'}}</a>
@@ -34,13 +34,15 @@
                 <!-- <br> -->
                 <div class="groupColumnLeft">
                     <div class="membersBorder">
-                        <div class="titleGroups">Members</div>
+                        <div class="titleGroups">⮟ Members ⮟</div>
                         <div class="allMembers" *ngFor="let member of membersOfGroup">
-                            <a class="membersOfGroup" [routerLink]="['/usergroups']">{{member.userName}}</a>
-                            <fa-icon class="favIconMemberOption" (click)="member.showOptions = !member.showOptions" [icon]="faEllipsisV"></fa-icon>
-                            <div *ngIf="member.showOptions" class="options">
-                                <a class="addDare" (click)="addDare(member.id)">Add Dare</a>
-                                <fa-icon *ngIf="this.groupDetail.permission == 0 || this.groupDetail.permission == 1" (click)="removeMember(member.id, groupDetail.groupId, member.userName)" class="favIconTrash" [icon]="faTrash"></fa-icon>
+                            <div class="checkIfIsOwnUser" *ngIf="member.id != userId">
+                                <a class="membersOfGroup" [routerLink]="['/usergroups']">{{member.userName}}</a>
+                                <fa-icon class="favIconMemberOption" (click)="member.showOptions = !member.showOptions" [icon]="faEllipsisV"></fa-icon>
+                                <div *ngIf="member.showOptions" class="options">
+                                    <a class="addDare" [routerLink]="['/createeditdaretasks']" [queryParams]="{taskOrDare: 'dare', userChallengedId: member.id, userChallengedName: member.userName}">Add Dare</a>
+                                    <fa-icon *ngIf="this.groupDetail.permission == 0 || this.groupDetail.permission == 1" (click)="removeMember(member.id, groupDetail.groupId, member.userName)" class="favIconTrash" [icon]="faTrash"></fa-icon>
+                                </div>  
                             </div>
                         </div>
                     </div>
@@ -55,7 +57,7 @@
                 </div>
                 <div class="groupColumnRight">
                     <div class="groupColumn goalsBorder">
-                        <div class="titleGroups">Tasks</div>
+                        <div class="titleGroups">⮟ Tasks ⮟</div>
                         <div class="allGoals">
                             <a class="goalName" [routerLink]="['/usergroups']">Task 1</a>
                             <a class="goalDescription">Description Task 1</a>
@@ -71,8 +73,8 @@
                         </div>
                         <div class="addGoal">
                             <br>
-                            <a class="" [routerLink]="['/createeditdaretasks']" [queryParams]="{taskOrDare: 'task'}">
-                                <fa-icon class="favIconAdd" [icon]="faPlus"></fa-icon>
+                            <a class="" [routerLink]="['/createeditdaretasks']" [queryParams]="{taskOrDare: 'task', groupChallengedId: this.groupDetail.groupId, groupChallengedName: this.groupDetail.groupName, groupChallengerPoints: this.groupDetail.points}">
+                                <fa-icon class="favIconAddTask" [icon]="faPlus"></fa-icon>
                             </a>
                         </div>
                     </div>

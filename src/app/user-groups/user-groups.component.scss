@@ -48,6 +48,16 @@ $third-color: #c1efff;
   background-color: $third-color;
 }
 
+.favIconAddTask{
+  padding: 2px;
+  cursor: pointer;
+  border-radius: 40%;
+  margin-bottom: 10px;
+}
+.favIconAddTask:hover{
+  background-color: $third-color;
+}
+
 .favIconMemberOption{
   margin-left: 5px;
   cursor: pointer;

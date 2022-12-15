@@ -29,6 +29,8 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
   groupsOfUser:any;
   membersOfGroup: any;
 
+  userId: any;
+
   
   public groupDetail = new GroupDetail();
   private usergroupDetail = new UsergroupDetail();
@@ -47,14 +49,14 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
             //console.log("onInit  User-groups - start");
             let result:any;
 
-            let userId = localStorage.getItem('id');
-            this.groupService.getGroupsByUserId(userId).subscribe(
+            this.userId = localStorage.getItem('id');
+            this.groupService.getGroupsByUserId(this.userId).subscribe(
               (response) => {
                 result = response;
                 //console.log(result.data.Users);
                 if (result.status == "OK") {
                   this.groupsOfUser = result.data.Users[0].userGroupInfoDTO; 
-                  //todo: show user poiints in each group 
+                  console.log(this.groupsOfUser)
                 }
                 if (result == -1) {
                   this.toastr.error('Something failed', 'Error');
@@ -131,7 +133,6 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
     this.groupDetail.groupId = 0;
     this.groupDetail.groupName = result.name.value;
     this.groupDetail.description = result.description.value;
-
   
     this.groupService.createGroup(this.groupDetail).subscribe(
       (response) => {

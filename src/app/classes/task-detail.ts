@@ -1,7 +1,6 @@
 export class TaskDetail {
     id: number = 0;
     ownerId: number = 0;
-    challengerId: number = 0;
     groupId: number = 0;
     taskName: string = "";
     description: string = "";

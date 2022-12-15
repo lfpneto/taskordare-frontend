@@ -4,7 +4,7 @@ export class DareDetail {
     ownerId: number = 0;
     dareName: string = "";
     description: string = "";
-    points: number = 0;
+    reward: string = "";
     deadline: string = "2022-12-01T12:25:45.973Z";//"2022-12-01T12:25:45.973Z";
     status: number = 0;
     url: string = "";
