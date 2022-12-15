@@ -57,9 +57,7 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
                   this.groupsOfUser = result.data.Users[0].userGroupInfoDTO;  
                 }
                 if (result == -1) {
-                  alert(
-                    'error'
-                  );
+                  this.toastr.error('Something failed', 'Error');
                 }
               },
               (error) => {
@@ -116,7 +114,7 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
           }
           console.log(this.membersOfGroup)
         }else{
-          alert("Not valid members.")
+          this.toastr.error('No valid members', 'Error');
         }
       },
       (error) => {
@@ -141,15 +139,13 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
         console.log(result)
         if (result.status == "OK") {
           //console.log("Group Created");
-          alert("Group Created");
+          this.toastr.success('Group Created', 'Success');
           this.divName = "nothing";
           window.location.reload();
           //todo: add user to the group who just got created
         }
         if (result == -1) {
-          alert(
-            'please register before login Or Invalid combination of Email and password'
-          );
+          this.toastr.error('Something failed', 'Error');
         }
       },
       (error) => {
@@ -181,12 +177,10 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
 
               if (result.status == "OK") {
                 console.log("Group Joined")
-                alert("Group Joined")
+                this.toastr.success('Group Joined', 'Success');
               }
               if (result == -1) {
-                alert(
-                  'error in joining'
-                );
+                this.toastr.error('Something failed in joining', 'Error');
               }
             },
             (error) => {
@@ -195,9 +189,8 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
           );
         }
         if (result == -1) {
-          alert(
-            'error in finding group id'
-          );
+          this.toastr.error('Error finding group id', 'Error');
+
         }
       },
       (error) => {
@@ -214,10 +207,10 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
         result =  response;
         //console.log(result);
         if(result.status == "OK"){
-          alert("User added to the group");
+          this.toastr.success('User email: ' + userEmailForm.email.value +' added to the group', 'Success');
           window.location.reload();
         }else{
-          alert("Not a valid User.")
+          this.toastr.info('Not a valid User', 'Inform');
         }
       },
       (error) => {
@@ -226,23 +219,23 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
     );
   }
 
-  removeMember(userId: any, groupId: any){
-    this.toastr.success('Hello world!', 'Toastr fun!');
-    // this.groupService.removeUserOffGroupById(userId, groupId).subscribe(
-    //   (response) => {
-    //     let result : any;
-    //     result =  response;
-    //     if(result.status == "OK"){
-    //       alert("User removed from the group");
-    //       window.location.reload();
-    //     }else{
-    //       alert("User not removed;")
-    //     }
-    //   },
-    //   (error) => {
-    //     console.log('Errors (CORS?) - ' + JSON.stringify(error));
-    //   }
-    // );
+  removeMember(userId: any, groupId: any, userName: any){
+    this.groupService.removeUserOffGroupById(userId, groupId).subscribe(
+      (response) => {
+        let result : any;
+        result =  response;
+        if(result.status == "OK"){
+          window.location.reload();
+          this.toastr.info('Member <b>' + userName + '</b> Removed', 'Info');
+
+        }else{
+          this.toastr.error('Something failed removing user', 'Error');
+        }
+      },
+      (error) => {
+        console.log('Errors (CORS?) - ' + JSON.stringify(error));
+      }
+    );
   }
 
 }

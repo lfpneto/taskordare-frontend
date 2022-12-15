@@ -6,6 +6,7 @@ import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 // import { PrimeNGConfig } from 'primeng/api';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private adminService: AdminService, 
     private router: Router,
+    private toastr: ToastrService
     // private primengConfig: PrimeNGConfig
     ) {}
 
@@ -60,6 +62,7 @@ export class LoginComponent implements OnInit {
 
           //this.messageService.add({severity:'info', summary: '', detail: 'Logged In', life:2000});
           this.router.navigate(['/usermain']);
+          this.toastr.success('Logged In', 'Success');
 
 
 
@@ -80,13 +83,11 @@ export class LoginComponent implements OnInit {
         //     );
         }
         if (result == -1) {
-          alert(
-            'please register before login Or Invalid combination of Email and password'
-          );
+          this.toastr.error('Invalid email or password', 'Error');
         }
       },
       (error) => {
-        console.log('Error in authentication');
+        this.toastr.error('Error in authentication...', 'Error');
       }
     );
 

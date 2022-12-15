@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AdminService } from '../services/admin.service';
 import { Router } from '@angular/router';
 import { UserDetail } from '../classes/user-detail';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -17,7 +18,11 @@ export class RegisterComponent implements OnInit {
 
   private userDetail = new UserDetail();  
 
-  constructor(private adminService: AdminService, private router: Router) {}
+  constructor(
+    private adminService: AdminService, 
+    private router: Router, 
+    private toastr: ToastrService
+    ) {}
 
 
   ngOnInit(): void {} // create the form object.
@@ -33,9 +38,9 @@ export class RegisterComponent implements OnInit {
     this.userDetail.password = AdminInformation.password.value; 
 
   	if(this.userDetail.firstName == "" || this.userDetail.lastName == "" || this.userDetail.userName == "" || this.userDetail.email == "" || this.userDetail.password == ""){
-		alert("Fields empty.")
-		return;  
-	}
+      this.toastr.info('Fields empty', 'Alert');
+		  return;  
+	  }
 
 	var a = false;
 	for (let i = 0; i < this.userDetail.email.length; i++) {
@@ -45,7 +50,7 @@ export class RegisterComponent implements OnInit {
 	}
 
 	if(a == false){
-		alert("Please insert valid email.")
+    this.toastr.info('Please insert a valid email', 'Alert');
 		return;  
 	}
 
@@ -64,19 +69,19 @@ export class RegisterComponent implements OnInit {
               }  
               else  
               {  
-                  alert("Error occur while registring user. Problem with API result.")  
+                this.toastr.error('Error occur while registring user. Problem with API result.', 'Error'); 
               }  
           },  
           error => {  
-            alert("Error occur while registring User. API response problem.")  
+            this.toastr.error('Error occur while registring User. API response problem.', 'Error');   
           }  
         );  
           
      }  
      else  
      {  
-        alert("Passwords do not match.");
-		return;
+        this.toastr.info('Passwords do not match', 'Alert');
+        return;
      }  
   }  
   

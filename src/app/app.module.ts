@@ -56,7 +56,11 @@ import { environment } from 'src/environments/environment';
     FormsModule,   //Assign FormsModule
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-left',
+      progressBar: true,
+      timeOut: 3000
+    }), // ToastrModule added
     ToastModule,
     RippleModule,
     RouterModule.forRoot([  

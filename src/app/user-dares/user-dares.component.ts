@@ -3,6 +3,8 @@ import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { DareDetail } from '../classes/dare-detail';
 import { DareService } from '../services/dare.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-user-dares',
@@ -22,7 +24,10 @@ export class UserDaresComponent implements OnInit {
 
   private dareDetail = new DareDetail();
 
-  constructor(private router: Router, private dareService: DareService) {
+  constructor(private router: Router, 
+    private dareService: DareService,
+    private toastr: ToastrService
+    ) {
     this.router.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd) {
         /* Your code goes here on every router change */
@@ -45,7 +50,7 @@ export class UserDaresComponent implements OnInit {
                 this.htmlToAdd = result.data.Users;
               }
               if (result == -1) {
-                alert('error');
+                this.toastr.error('Something failed', 'Error');   
               }
             },
             (error) => {
@@ -80,10 +85,10 @@ export class UserDaresComponent implements OnInit {
       (response) => {
         result = response;
         if (result.status == 'OK') {
-          alert('Updated');
+          this.toastr.success('Status updated', 'Success');
         }
         if (result == -1) {
-          alert('error');
+          this.toastr.error('Something failed', 'Error');
         }
       },
       (error) => {
@@ -115,49 +120,6 @@ export class UserDaresComponent implements OnInit {
       return 'Days left: ' + -difference;
     }
   }
-
-  // selectFile(event: any, dare: DareDetail) {
-  //     //Angular 11, for stricter type
-  //     if (!event.target.files[0] || event.target.files[0].length == 0) {
-  //       this.msg = 'You must select an image';
-  //       return;
-  //     }
-
-  //     var mimeType = event.target.files[0].type;
-
-  //     if (mimeType.match(/image\/*/) == null) {
-  //       this.msg = 'Only images are supported';
-  //       return;
-  //     }
-
-  //     var reader = new FileReader();
-  //     reader.readAsDataURL(event.target.files[0]);
-
-  //     reader.onload = (_event) => {
-  //       this.msg = '';
-  //       this.url = reader.result;
-  //     };
-
-  // 	//this.imageUpload(event.target.files[0].name, dare);
-  // 	let result: any;
-  // 	this.dareService.uploadImagePost(event.target.files[0].name).subscribe(
-  // 		(response) => {
-  // 		  result = response;
-  // 		  console.log(result);
-  // 		  if (result.status_code == 200) {
-
-  // 		  } else {
-  // 			alert('error');
-  // 		  }
-  // 		  if (result == -1) {
-  // 			alert('error');
-  // 		  }
-  // 		},
-  // 		(error) => {
-  // 		  console.log('Errors (CORS?) - ' + JSON.stringify(error));
-  // 		}
-  // 	  );
-  //   }
 
   // OnClick of button Upload
   onUpload(event: any, dare: DareDetail) {
