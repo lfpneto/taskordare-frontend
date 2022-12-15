@@ -4,7 +4,7 @@ import { DareDetail } from '../classes/dare-detail';
 import { DareService } from '../services/dare.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-user-dares',
@@ -24,32 +24,65 @@ export class UserDaresComponent implements OnInit {
 
   private dareDetail = new DareDetail();
 
-  constructor(private router: Router, 
+  constructor(
+    private router: Router,
     private dareService: DareService,
+    private adminService: AdminService,
     private toastr: ToastrService
-    ) {
+  ) {
     this.router.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd) {
         /* Your code goes here on every router change */
         if (ev.url == '/userdares') {
           let result: any;
+          let resultUser: any;
           let userId = localStorage.getItem('id');
           this.dareService.getUserDares(userId).subscribe(
             (response) => {
               result = response;
               if (result.status == 'OK') {
                 var i = 0;
-                result.data.Users.forEach((element: { deadline: any }) => {
-                  result.data.Users[i].daysleft = this.calculateDiff(
-                    element.deadline
-                  );
-                  i = i + 1;
-                });
+                result.data.Users.forEach(
+                  (element: { deadline: any; ownerId: any }) => {
+                    //turns data into deadline days left
+                    result.data.Users[i].daysleft = this.calculateDiff(
+                      element.deadline
+                    );
+
+                    i = i + 1;
+                  }
+                );
 
                 this.htmlToAdd = result.data.Users;
+                console.log('start of the loop');
+                for (let index = 0; index < this.htmlToAdd.length; index++) {
+                  const element = this.htmlToAdd[index];
+                  console.log(index);
+                  //gets the info data by his id
+                  this.adminService
+                    .getUserDetailById(element.ownerId)
+                    .subscribe(
+                      (response2) => {
+                        console.log(result);
+                        resultUser = response2;
+                        if (resultUser.status == 'OK') {
+                          this.htmlToAdd[index].ownerName =
+                            resultUser.data.User.userName;
+                        }
+                        if (resultUser == -1) {
+                          this.toastr.error('Something failed', 'Error');
+                        }
+                      },
+                      (error) => {
+                        console.log(
+                          'Errors (CORS?) - ' + JSON.stringify(error)
+                        );
+                      }
+                    );
+                }
               }
               if (result == -1) {
-                this.toastr.error('Something failed', 'Error');   
+                this.toastr.error('Something failed', 'Error');
               }
             },
             (error) => {
@@ -128,8 +161,9 @@ export class UserDaresComponent implements OnInit {
       this.dareService.upload(event.target.files[0]).subscribe((event: any) => {
         console.log(event);
         if (typeof event === 'object') {
-			dare.url = event.image.display_url;
-			this.updateDareResponse(dare);
+          dare.url = event.image.display_url;
+          //this.updateDareResponse(dare);
+          this.changeStatusChecked(dare);
         }
       });
     }
