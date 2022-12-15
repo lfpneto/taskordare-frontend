@@ -7,19 +7,18 @@
         <br>
         Deadline: <input type="date" name="date" placeholder="Date" ngModel />
         <br>
-        <button type="submit" value="submit" class="buttonRose buttonRoseGoal">Add Dare</button>
+        <button *ngIf="buttonsShow" type="submit" value="submit" class="buttonRose buttonRoseGoal">Add Dare</button>
     </form>
 
     <form #taskInfo *ngIf="taskOrDare == 'task'" (ngSubmit)="addTask(taskInfo)">
         <h1 class="tittle">Add/Edit Task</h1>
         <h2>Group: {{this.groupChallengedName}}</h2>
-        <h3>Points: {{this.groupChallengerPoints}}</h3>
         <input type="text" name="name" placeholder="Name" ngModel />
         <input type="text" name="description" placeholder="Description" ngModel />
         <input type="text" name="points" placeholder="Points" ngModel />
-        <br>Your points: {{points}}<br>
+        <br>Your points: <b>{{this.groupChallengerPoints}}</b><br>
         Deadline: <input type="date" name="date" placeholder="Date" ngModel />
         <br>
-        <button type="submit" value="submit" class="buttonRose buttonRoseGoal">Add Task</button>
+        <button *ngIf="buttonsShow" type="submit" value="submit" class="buttonRose buttonRoseGoal">Add Task</button>
     </form>
 </div>

@@ -14,6 +14,8 @@ import { TaskService } from '../services/task.service';
 export class CreateEditDareTasksComponent implements OnInit {
   points: number = 0;
 
+  buttonsShow = true;
+
   taskOrDare = 'none';
   groupChallengedId = 0;
   groupChallengedName = "";
@@ -50,6 +52,16 @@ export class CreateEditDareTasksComponent implements OnInit {
   ngOnInit(): void {}
 
   addDare(result: any) {
+    console.log(result);
+    let field = this.isAnyFieldInTheFormEmpty(result);
+    if (field != ""){
+      this.toastr.info('Fields' + field + 'empty', 'Inform');
+      this.buttonsShow = true;
+      return;
+    }
+
+    this.buttonsShow = false;
+
     this.dareDetail.id = 0;
     this.dareDetail.dareName = result.name.value;
     this.dareDetail.description = result.description.value;
@@ -77,17 +89,27 @@ export class CreateEditDareTasksComponent implements OnInit {
         console.log('Errors (CORS?) - ' + JSON.stringify(error));
       }
     );
+
+    this.buttonsShow = true;
+
   }
 
   addTask(result: any) {
+    this.buttonsShow = false;
     
+    let field = this.isAnyFieldInTheFormEmpty(result);
+    if (field != ""){
+      this.toastr.info('Field ' + field + ' empty', 'Inform');
+      this.buttonsShow = true;
+      return;
+    }
     
     //todo check if fields emty
 
     this.taskDetail.id = 0;
     this.taskDetail.taskName = result.name.value;
     this.taskDetail.description = result.description.value;
-    this.taskDetail.points = result.reward.value;
+    this.taskDetail.points = result.points.value;
     this.taskDetail.groupId = this.groupChallengedId;
     this.taskDetail.ownerId = Number(localStorage.getItem('id') || 0);
     this.taskDetail.deadline = result.date.value;
@@ -117,5 +139,21 @@ export class CreateEditDareTasksComponent implements OnInit {
       }
     );
 
+    this.buttonsShow = true;
+
+
+  }
+
+
+  isAnyFieldInTheFormEmpty(form: any){
+    for (let index = 0; index < form.length; index++) {
+      const element = form[index];
+      console.log(element.value)
+      console.log(element.type)
+      if(element.value == ""){
+        return element.name;
+      }
+    }
+    return "";
   }
 }
