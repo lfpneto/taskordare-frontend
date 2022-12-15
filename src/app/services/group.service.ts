@@ -87,7 +87,7 @@ export class GroupService {
     let formData = {
       "adminId": parseInt(localStorage.getItem('id') || "0"),
       "userId": userId,
-      "groupdId": groupId
+      "groupId": groupId
     }
     console.log(formData);
     let url = this.groupConfigBaseUrl + '/remove-user';
