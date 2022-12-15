@@ -94,4 +94,15 @@ export class GroupService {
     return this.http.post(url, formData);
   }
 
+  setUserAdmin(userId: any, groupId: number){
+    let formData = {
+      "adminId": parseInt(localStorage.getItem('id') || "0"),
+      "userId": userId,
+      "groupId": groupId
+    }
+    console.log(formData);
+    let url = this.groupConfigBaseUrl + '/set-admin';
+    return this.http.post(url, formData);
+  }
+
 }

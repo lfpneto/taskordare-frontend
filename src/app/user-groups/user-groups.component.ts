@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { faTrash, faPlus, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPlus, faEllipsisV, faUpLong } from '@fortawesome/free-solid-svg-icons';
 import { GroupService } from '../services/group.service';
 import { AdminService } from '../services/admin.service';
 import { Router, NavigationEnd } from '@angular/router';
@@ -25,6 +25,9 @@ export class UserGroupsComponent implements OnInit {
   faTrash = faTrash;
   faPlus = faPlus;
   faEllipsisV = faEllipsisV;
+  faUpLong = faUpLong;
+
+  promotePlayerShow = false;
 
   divName = "nothing";
 
@@ -104,6 +107,7 @@ export class UserGroupsComponent implements OnInit {
           this.membersOfGroup = result.data.Users;
           for (let index = 0; index < this.membersOfGroup.length; index++) {
             this.membersOfGroup[index].showOptions = false;
+            this.membersOfGroup[index].promotePlayerShow = false;
             index++;
           }
           console.log(this.membersOfGroup)
@@ -234,6 +238,25 @@ export class UserGroupsComponent implements OnInit {
         result =  response;
         if(result.status == "OK"){
           this.toastr.info('Member ' + userName + ' Removed', 'Info');
+          this.divName = "nothing";
+
+        }else{
+          this.toastr.error('You cant remove the creator of the group', 'Error');
+        }
+      },
+      (error) => {
+        console.log('Errors (CORS?) - ' + JSON.stringify(error));
+      }
+    );
+  }
+
+  PromoteMember(userId: any, groupId: any, userName: any){
+    this.groupService.setUserAdmin(userId, groupId).subscribe(
+      (response) => {
+        let result : any;
+        result =  response;
+        if(result.status == "OK"){
+          this.toastr.info('Member ' + userName + ' became admin', 'Info');
           this.divName = "nothing";
 
         }else{
