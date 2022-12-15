@@ -49,6 +49,9 @@ export class UserDaresComponent implements OnInit {
                       element.deadline
                     );
 
+                    result.data.Users[i].showOptions = false;
+                    
+
                     i = i + 1;
                   }
                 );
