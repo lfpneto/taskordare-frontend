@@ -12,10 +12,9 @@
 <h1 class="center">All My Dares</h1>
 <div class="table">
     <div class="table-header">
-        <div class="header__item"><a id="name" class="filter__link" href="#">Dare Name</a></div>
-        <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Dare Description</a>
-        </div>
         <div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">Challenger</a></div>
+        <div class="header__item"><a id="name" class="filter__link" href="#">Dare Name</a></div>
+        <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Dare Description</a> </div>
         <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Time Left</a></div>
         <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Image</a></div>
         <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Status</a></div>
@@ -23,9 +22,9 @@
     <div class="table-content">
         <div class="table-row" *ngFor="let dare of htmlToAdd">
             <!-- <a class="groups" (click)="showDareInfo(dare.id)">{{dare.dareName}}</a> -->
+            <div class="table-data">{{dare.ownerName}}</div>
             <div class="table-data">{{dare.dareName}}</div>
             <div class="table-data">{{dare.description}}</div>
-            <div class="table-data">{{dare.ownerId}}</div>
             <div class="table-data">{{dare.daysleft}}</div>
             <div class="table-data">
                 <input type="file" *ngIf="showUploadImg" (change)="onUpload($event, dare)">
@@ -34,7 +33,7 @@
                     {{dare.url}}
                 </a>
             </div>
-            <div class="table-data"><input class="checkbox" (click)="changeStatusChecked(dare)" [checked]="dare.status" type="checkbox"></div>
+            <div class="table-data"><input class="checkbox" disabled="disabled" [checked]="dare.status" type="checkbox"></div>
 
         </div>
         <!-- <div class="table-row">
