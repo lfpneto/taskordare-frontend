@@ -58,18 +58,10 @@
                 <div class="groupColumnRight">
                     <div class="groupColumn goalsBorder">
                         <div class="titleGroups">⮟ Tasks ⮟</div>
-                        <div class="allGoals">
-                            <a class="goalName" [routerLink]="['/usergroups']">Task 1</a>
-                            <a class="goalDescription">Description Task 1</a>
+                        <div class="allGoals" *ngFor="let task of tasksOfGroup">
+                            <a class="goalName" [routerLink]="['/usergroups']">{{task.taskName}}</a>
+                            <a class="goalDescription">{{task.description}}</a>
                             <br>
-                            <a class="goalName" [routerLink]="['/usergroups']">Task 2</a>
-                            <a class="goalDescription">Description Task 2</a>
-                            <br>
-                            <a class="goalName" [routerLink]="['/usergroups']">Task 3</a>
-                            <a class="goalDescription">Description Task 3</a>
-                            <br>
-                            <a class="goalName" [routerLink]="['/usergroups']">Task 4</a>
-                            <a class="goalDescription">Description Task 4</a>
                         </div>
                         <div class="addGoal">
                             <br>
@@ -87,7 +79,7 @@
         <div *ngIf="this.divName == 'createDare'" class="groupContainer">
             <div class="groupColumnRight">
                 <div class="groupColumn goalsBorder">
-                    <div class="titleGroups">Create Dare to Member#2</div>
+                    <!-- <div class="titleGroups">Create Dare to Member#2</div>
                     <form #dareInformation (ngSubmit)="addDare(dareInformation)">
                         <div class="loginForm">
                             <input type="text" name="title" placeholder="Title" ngModel />
@@ -96,7 +88,7 @@
                         </div>
 
                         <button type="submit" value="submit" class="buttonRose"> Add </button>
-                    </form>
+                    </form> -->
                 </div>
             </div>
         </div>

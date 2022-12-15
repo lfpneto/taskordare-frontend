@@ -7,6 +7,8 @@ import { GroupDetail } from '../classes/group-detail';
 import { UsergroupDetail } from '../classes/usergroup-detail';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
+import { TaskDetail } from '../classes/task-detail';
+import { TaskService } from '../services/task.service';
 
 
 
@@ -18,7 +20,7 @@ import { ToastrService } from 'ngx-toastr';
 
 
 
-export class UserGroupsComponent implements OnInit, OnDestroy {
+export class UserGroupsComponent implements OnInit {
   myObserver: any;
   faTrash = faTrash;
   faPlus = faPlus;
@@ -28,19 +30,22 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
 
   groupsOfUser:any;
   membersOfGroup: any;
+  tasksOfGroup: any;
 
   userId: any;
 
   
   public groupDetail = new GroupDetail();
   private usergroupDetail = new UsergroupDetail();
+  private taskDetail = new TaskDetail();
 
   constructor(
     private adminService: AdminService,
     private groupService: GroupService,
     private router: Router,
     private sanitized: DomSanitizer,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private taskService: TaskService
     ) {
       /*this.myObserver =*/ this.router.events.subscribe((ev) => {
         if (ev instanceof NavigationEnd) { 
@@ -81,22 +86,9 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    console.log("destroyed");
-    // this.myObserver.unsubscribe();
-  }
 
 
-  addDare(value:any){
 
-  }
-
-  showJoinGroup(){
-    this.divName = "joinGroup"
-  }
-  showCreateGroup(){
-    this.divName = "createGroup"
-  }
   showGroupAndTasks(group: GroupDetail){
     this.divName = "membersTaks"
     //give selected group to the constructor
@@ -124,7 +116,22 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
       }
     );
     
-    
+    this.taskService.getAllTaskbyGroupId(group.groupId).subscribe(
+      (response) => {
+        let result : any;
+        result =  response;
+        if(result.status == "OK"){
+          this.tasksOfGroup = result.data.tasks;
+          console.log(this.tasksOfGroup)
+        }else{
+          this.toastr.error('No valid tasks', 'Error');
+        }
+      },
+      (error) => {
+        console.log('Errors (CORS?) - ' + JSON.stringify(error));
+      }
+    );
+
     //todo list tasks
     //todo onShowMembers only show the delete action if user is admin
   }
@@ -237,6 +244,13 @@ export class UserGroupsComponent implements OnInit, OnDestroy {
         console.log('Errors (CORS?) - ' + JSON.stringify(error));
       }
     );
+  }
+
+  showJoinGroup(){
+    this.divName = "joinGroup"
+  }
+  showCreateGroup(){
+    this.divName = "createGroup"
   }
 
 }

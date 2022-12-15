@@ -9,6 +9,8 @@ import { TaskDetail } from '../classes/task-detail';
 export class TaskService {
 
   private baseUrl = environment.apiURL + 'tasks';
+  private baseGroupConfigUrl = environment.apiURL + 'group-config';
+
 
   constructor(private http: HttpClient) { }
 
@@ -47,6 +49,11 @@ export class TaskService {
     getUserTasks(userId: any) {
       let url = this.baseUrl + '/Task/';
       return this.http.get(url + '/' + userId);
+    }
+
+    getAllTaskbyGroupId(groupId: number) {
+      let url = this.baseGroupConfigUrl + '/get-group-tasks/';
+      return this.http.get(url + groupId);
     }
   
 }
