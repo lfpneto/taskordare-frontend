@@ -86,23 +86,12 @@ export class AdminService {
       
     getUserDetail(username:any) : Observable<any>  
     {  
-  //       let url = this.baseUrl + "user/" + username;  
-    
-         // create an instance of Header object.  
-  //       let headers = new Headers();  
-    
-        // get token from localStorage.  
-  //       let token = localStorage.getItem('token');  
-    
-        // Append Authorization header.  
-  //       headers.append('Authorization' , 'Bearer ' + token);  
-    
-        // create object of RequestOptions and include that in it.  
-  //       let options = new RequestOptions( { headers : headers } );  
-    
-  //       return this.http.get(url);  
-
-		return this.http.get(this.baseUrl + 'user/username/{username}?username=' + username);  
+		  return this.http.get(this.baseUrl + 'user/username/{username}?username=' + username);  
+    } 
+  
+  getUserDetailById(id:any) : Observable<any>  
+    {  
+		  return this.http.get(this.baseUrl + 'user/user/' + id);  
     }  
       
     token(){
