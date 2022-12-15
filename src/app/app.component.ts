@@ -43,7 +43,7 @@ export class AppComponent {
   ngOnInit() {
 
     //console.log("ngOnInit do appComponent");
-
+    this.mainClick();
     // console.log(localStorage.getItem('username'))
     
 
