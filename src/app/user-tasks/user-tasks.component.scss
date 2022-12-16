@@ -9,6 +9,10 @@
     flex: 66.66%;
     text-align: center;
   }
+  .center{
+    margin-top: 0px;
+    text-align: center;
+  }
   
   .title {
     margin: 20px;
@@ -130,4 +134,15 @@ $third-color: #c1efff;
 		content: '(asc)';
 	}
 	
+}
+
+.favIconTrash {
+  margin-left: 15px;
+  // color: red !important;
+  cursor: pointer;
+  border-radius: 40%;
+  // font-size: 4rem;
+}
+.favIconTrash:hover {
+  background-color: $third-color;
 }

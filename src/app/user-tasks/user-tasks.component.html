@@ -9,25 +9,42 @@
 		<!-- AHAHAHA -->
 	</div>
 </div>
+<h1 class="center">All tasks from all my groups</h1>
 
 <div class="table">
 	<div class="table-header">
-		<div class="header__item"><a id="name" class="filter__link" href="#">Group Name</a></div>
+		<div class="header__item"><a id="name" class="filter__link" href="#">Group</a></div>
 		<div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Name</a></div>
 		<div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">Description</a>
 		</div>
-		<div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Time Left</a>
+		<div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Time</a>
 		</div>
-		<div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">%</a></div>
+		<div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Points</a></div>
+		<div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Image</a></div>
+		<div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Status</a></div>
+
+
 		<!-- <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#"></a></div> -->
 	</div>
 	<div class="table-content">
-		<div class="table-row">
-			<div class="table-data">Group#1</div>
-			<div class="table-data">Task Name#1</div>
-			<div class="table-data">Task Description #1</div>
-			<div class="table-data">10 days</div>
-			<div class="table-data">20%</div>
+		<div class="table-row" *ngFor="let task of allTasks">
+			<div class="table-data">{{task.groupName}}</div>
+			<div class="table-data">{{task.taskName}}</div>
+			<div class="table-data">{{task.description}}</div>
+			<div class="table-data">{{task.daysleft}}</div>
+			<div class="table-data">{{task.points}}</div>
+			
+			<div class="table-data">
+                <input type="file" *ngIf="task.showOptions && (task.url == '' || task.url == null)" (change)="onUpload($event, task)">
+                <fa-icon class="favIconTrash" type="file" *ngIf="task.url == '' || task.url == null" (click)="task.showOptions = !task.showOptions" [icon]="faUpload"></fa-icon>
+                <a class="imgPath" target="_blank" href="{{task.url}}">
+                    {{task.url}}
+                </a>
+            </div>
+			
+			<div class="table-data"><input class="checkbox" disabled="disabled" [checked]="task.status" type="checkbox"></div>
+
+
 			<!-- <div class="table-data link" [routerLink]="['/usergoal']">⋯</div> -->
 		</div>
 	</div>
