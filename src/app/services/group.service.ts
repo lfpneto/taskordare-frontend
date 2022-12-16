@@ -77,7 +77,7 @@ export class GroupService {
       "adminUserId": localStorage.getItem('id'),
       "email": email,
       "groupId": groupId,
-      "role": 0
+      "role": 2
     }
     let url = this.groupConfigBaseUrl + '/add-user';
     return this.http.post(url, formData);
