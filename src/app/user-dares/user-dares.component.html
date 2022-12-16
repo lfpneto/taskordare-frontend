@@ -9,23 +9,25 @@
         <!-- <h3> Dares </h3> -->
     </div>
 </div>
-<h1 class="center">All My Dares</h1>
+<h1 class="center">They dared me . . .</h1>
 <div class="table">
     <div class="table-header">
         <div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">Challenger</a></div>
-        <div class="header__item"><a id="name" class="filter__link" href="#">Dare Name</a></div>
-        <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Dare Description</a> </div>
-        <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Time Left</a></div>
+        <div class="header__item"><a id="name" class="filter__link" href="#">Name</a></div>
+        <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Description</a> </div>
+        <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Time</a></div>
+        <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Reward</a></div>
         <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Image</a></div>
         <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Status</a></div>
     </div>
     <div class="table-content">
-        <div class="table-row" *ngFor="let dare of htmlToAdd">
+        <div class="table-row" *ngFor="let dare of daresChallenged">
             <!-- <a class="groups" (click)="showDareInfo(dare.id)">{{dare.dareName}}</a> -->
-            <div class="table-data">{{dare.ownerName}}</div>
+            <div class="table-data">{{dare.challengerName}}</div>
             <div class="table-data">{{dare.dareName}}</div>
             <div class="table-data">{{dare.description}}</div>
             <div class="table-data">{{dare.daysleft}}</div>
+            <div class="table-data">{{dare.reward}}</div>
             <div class="table-data">
                 <input type="file" *ngIf="dare.showOptions && (dare.url == '' || dare.url == null)" (change)="onUpload($event, dare)">
                 <fa-icon class="favIconTrash" type="file" *ngIf="dare.url == '' || dare.url == null" (click)="dare.showOptions = !dare.showOptions" [icon]="faUpload"></fa-icon>
@@ -34,45 +36,37 @@
                 </a>
             </div>
             <div class="table-data"><input class="checkbox" disabled="disabled" [checked]="dare.status" type="checkbox"></div>
-
         </div>
-        <!-- <div class="table-row">
-            <div class="table-data">Dare Description#1</div>
-            <div class="table-data">John</div>
-            <div class="table-data">10 days</div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<h1 class="center">I dare them to . . .</h1>
+<div class="table">
+    <div class="table-header">
+        <div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">Challenged</a></div>
+        <div class="header__item"><a id="name" class="filter__link" href="#">Name</a></div>
+        <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Description</a> </div>
+        <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Time</a></div>
+        <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Reward</a></div>
+        <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Image</a></div>
+        <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Status</a></div>
+    </div>
+    <div class="table-content">
+        <div class="table-row" *ngFor="let dare of daresChallenger">
+            <!-- <a class="groups" (click)="showDareInfo(dare.id)">{{dare.dareName}}</a> -->
+            <div class="table-data">{{dare.challengerName}}</div>
+            <div class="table-data">{{dare.dareName}}</div>
+            <div class="table-data">{{dare.description}}</div>
+            <div class="table-data">{{dare.daysleft}}</div>
+            <div class="table-data">{{dare.reward}}</div>
             <div class="table-data">
-                <fa-icon class="favIconTrash" [icon]="faUpload"></fa-icon>
-                <a class="imgPath">
-                    ..//imagepath
+                <a class="imgPath" target="_blank" href="{{dare.url}}">
+                    {{dare.url}}
                 </a>
             </div>
-            <div class="table-data"><input class="checkbox" type="checkbox"></div>
-        </div> -->
-        <!-- <div class="table-row">
-            <div class="table-data">Dare#1</div>
-            <div class="table-data">Dare Description#1</div>
-            <div class="table-data">John</div>
-            <div class="table-data">10 days</div>
-            <div class="table-data">
-                <fa-icon class="favIconTrash" [icon]="faUpload"></fa-icon>
-                <a class="imgPath">
-                    ..//imagepath
-                </a>
-            </div>
-            <div class="table-data"><input class="checkbox" type="checkbox"></div>
+            <div class="table-data"><input class="checkbox" disabled="disabled" [checked]="dare.status" type="checkbox"></div>
         </div>
-        <div class="table-row">
-            <div class="table-data">Dare#1</div>
-            <div class="table-data">Dare Description#1</div>
-            <div class="table-data">John</div>
-            <div class="table-data">10 days</div>
-            <div class="table-data">
-                <fa-icon class="favIconTrash" [icon]="faUpload"></fa-icon>
-                <a class="imgPath">
-                    ..//imagepath
-                </a>
-            </div>
-            <div class="table-data"><input class="checkbox" type="checkbox"></div>
-        </div> -->
     </div>
 </div>

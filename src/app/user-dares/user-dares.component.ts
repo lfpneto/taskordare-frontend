@@ -13,7 +13,9 @@ import { AdminService } from '../services/admin.service';
 })
 export class UserDaresComponent implements OnInit {
   faUpload = faUpload;
-  htmlToAdd: any;
+  daresChallenged: any;
+  daresChallenger: any;
+
   isChecked: boolean = false;
 
   showUploadImg: boolean = false;
@@ -37,39 +39,92 @@ export class UserDaresComponent implements OnInit {
           let result: any;
           let resultUser: any;
           let userId = localStorage.getItem('id');
-          this.dareService.getUserDares(userId).subscribe(
+          this.dareService.getUserChallengedDares(userId).subscribe(
             (response) => {
               result = response;
               if (result.status == 'OK') {
                 var i = 0;
-                result.data.Users.forEach(
+                result.data.Challenged.forEach(
                   (element: { deadline: any; ownerId: any }) => {
                     //turns data into deadline days left
-                    result.data.Users[i].daysleft = this.calculateDiff(
+                    result.data.Challenged[i].daysleft = this.calculateDiff(
                       element.deadline
                     );
 
-                    result.data.Users[i].showOptions = false;
-                    
+                    result.data.Challenged[i].showOptions = false;
 
                     i = i + 1;
                   }
                 );
 
-                this.htmlToAdd = result.data.Users;
+                this.daresChallenged = result.data.Challenged;
+
                 console.log('start of the loop');
-                for (let index = 0; index < this.htmlToAdd.length; index++) {
-                  const element = this.htmlToAdd[index];
+                for (let index = 0; index < this.daresChallenged.length; index++) {
+                  const element = this.daresChallenged[index];
                   console.log(index);
                   //gets the info data by his id
                   this.adminService
-                    .getUserDetailById(element.ownerId)
+                    .getUserDetailById(element.challengerId)
                     .subscribe(
                       (response2) => {
                         console.log(result);
                         resultUser = response2;
                         if (resultUser.status == 'OK') {
-                          this.htmlToAdd[index].ownerName =
+                          this.daresChallenged[index].challengerName =
+                            resultUser.data.User.userName;
+                        }
+                        if (resultUser == -1) {
+                          this.toastr.error('Something failed', 'Error');
+                        }
+                      },
+                      (error) => {
+                        console.log(
+                          'Errors (CORS?) - ' + JSON.stringify(error)
+                        );
+                      }
+                    );
+                }
+              }
+              if (result == -1) {
+                this.toastr.error('Something failed', 'Error');
+              }
+            },
+            (error) => {
+              console.log('Errors (CORS?) - ' + JSON.stringify(error));
+            }
+          );
+
+          this.dareService.getUserChallengerDares(userId).subscribe(
+            (response) => {
+              result = response;
+              if (result.status == 'OK') {
+                var i = 0;
+                result.data.Challenger.forEach(
+                  (element: { deadline: any; ownerId: any }) => {
+                    //turns data into deadline days left
+                    result.data.Challenger[i].daysleft = this.calculateDiff(
+                      element.deadline
+                    );
+                    i = i + 1;
+                  }
+                );
+
+                this.daresChallenger = result.data.Challenger;
+
+                console.log('start of the loop');
+                for (let index = 0; index < this.daresChallenger.length; index++) {
+                  const element = this.daresChallenger[index];
+                  console.log(index);
+                  //gets the info data by his id
+                  this.adminService
+                    .getUserDetailById(element.challengedId)
+                    .subscribe(
+                      (response2) => {
+                        console.log(result);
+                        resultUser = response2;
+                        if (resultUser.status == 'OK') {
+                          this.daresChallenger[index].challengerName =
                             resultUser.data.User.userName;
                         }
                         if (resultUser == -1) {
