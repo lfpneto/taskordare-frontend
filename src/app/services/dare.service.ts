@@ -52,8 +52,14 @@ export class DareService {
     return this.http.get(url + dareId);
   }
 
-  getUserDares(userId: any) {
-    let url = this.baseUserProfileUrl + '/dares';
+  getUserChallengedDares(userId: any) {
+    let url = this.baseUserProfileUrl + '/challenged-dares';
+    //console.log("getUserDares")
+    return this.http.get(url + '/' + userId);
+  }
+
+  getUserChallengerDares(userId: any) {
+    let url = this.baseUserProfileUrl + '/challenger-dares';
     //console.log("getUserDares")
     return this.http.get(url + '/' + userId);
   }
