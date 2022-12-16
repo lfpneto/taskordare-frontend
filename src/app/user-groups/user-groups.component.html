@@ -51,7 +51,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="this.groupDetail.permission == 1" class="membersBorder">
+                    <div *ngIf="this.groupDetail.permission <= 1" class="membersBorder">
                         <form #userEmailForm (ngSubmit)="addUserByEmail(userEmailForm)"> 
                             <input type="text" class="inputEmail" name="email" placeholder="User Email" ngModel />
                             <button type="submit" value="submit" class="buttonAddUserByEmail">
