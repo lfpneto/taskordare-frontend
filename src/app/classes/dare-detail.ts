@@ -1,7 +1,8 @@
 export class DareDetail {
     // id 	owner_id 	group_id 	task_name 	description 	points 	deadline 
     id: number = 0;
-    ownerId: number = 0;
+    challengerId: number = 0;
+    challengedId: number = 0;
     dareName: string = "";
     description: string = "";
     reward: string = "";
