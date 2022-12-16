@@ -30,3 +30,24 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ### Further help
 
 To get more help on the Angular CLI use `ng help` or contact the developers of this projects **Group D**.
+
+# How to deploy
+
+```
+ng deploy --base-href=/taskordare-frontend/
+```
+
+## Hosted in
+
+[](https://<username>.github.io/<repositoryname>/)
+
+[https://mesw-les.github.io/taskordare-frontend/](https://mesw-les.github.io/taskordare-frontend/)
+
+## To build: 
+
+[ref 1 - Angular.schedule](https://angular.schule/blog/2020-01-everything-github)
+- See chapther 4. A first deployment to GitHub Pages
+
+[ref 2 - npmjs.com](https://www.npmjs.com/package/angular-cli-ghpages)
+
+[ref 3 - angular.io](https://angular.io/guide/deployment)
