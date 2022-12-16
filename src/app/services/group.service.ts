@@ -105,4 +105,9 @@ export class GroupService {
     return this.http.post(url, formData);
   }
 
+  getGroupbyId(groupId: number) {
+    let url = this.groupBaseUrl + '/group/';
+    return this.http.get(url + groupId);
+  }
+
 }

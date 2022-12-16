@@ -55,5 +55,10 @@ export class TaskService {
       let url = this.baseGroupConfigUrl + '/get-group-tasks/';
       return this.http.get(url + groupId);
     }
+
+    getAllTaskbyUserId(userId: number) {
+      let url = this.baseUrl + '/owner/';
+      return this.http.get(url + userId);
+    }
   
 }
