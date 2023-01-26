@@ -19,3 +19,4 @@ dares-controller
 - delete dare
 dares right now dont have points because the points are associated with the user to the group, so either we associate dares again to the groups or create a reward column in the dares as type string just to at least have some logic in this, dares right now have no challenger and no accepenter player
 
+.
