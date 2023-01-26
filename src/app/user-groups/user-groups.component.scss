@@ -143,6 +143,15 @@ $third-color: #c1efff;
 	font-size: 30px;
 }
 
+.goalLine{
+  width: 90%;
+  background-color: #ffcea9;
+  margin-left: 5%;
+  margin-right: 5%;
+  border-radius: 10px;
+  border: 2px solid white;
+}
+
 .groups{
 	font-size: 23px;
   cursor: pointer;
@@ -160,13 +169,14 @@ $third-color: #c1efff;
 
 .goalName{
 	font-size: 23px;
+  text-decoration: none;
 }
 .goalName:hover{
 	color:$third-color;
 }
 
 .goalDescription{
-	font-size: 20px;
+	font-size: 16px;
   margin-left: 10px;
   cursor:default;
 }

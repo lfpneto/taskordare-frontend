@@ -64,8 +64,10 @@
                     <div class="groupColumn goalsBorder">
                         <div class="titleGroups">⮟ Tasks ⮟</div>
                         <div class="allGoals" *ngFor="let task of tasksOfGroup">
-                            <a class="goalName" [routerLink]="['/usergroups']">{{task.taskName}}</a>
-                            <a class="goalDescription">{{task.description}}</a>
+                            <div class="goalLine">
+                                <a class="goalName" [routerLink]="['/usergroups']">{{task.taskName}}</a>
+                                <br><a class="goalDescription">{{task.description}}</a>
+                            </div>
                             <br>
                         </div>
                         <div class="addGoal">
