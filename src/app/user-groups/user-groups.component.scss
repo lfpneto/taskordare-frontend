@@ -111,7 +111,7 @@ $third-color: #c1efff;
 	margin-top: 20px;
 
 	width: 30%;
-	background-color: rgba(255, 255, 255, 0);
+	background-color: #ffcea9;
 	border: 4px solid rgb(255, 255, 255);
   border-radius: 15px;
 	
@@ -119,6 +119,8 @@ $third-color: #c1efff;
   // padding: 14px 28px;
 
   cursor: pointer;
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .button:hover{
@@ -137,6 +139,8 @@ $third-color: #c1efff;
   border-radius: 15px;
 	
   color: rgb(255, 255, 255);
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .titleGroups{
@@ -150,6 +154,7 @@ $third-color: #c1efff;
   margin-right: 5%;
   border-radius: 10px;
   border: 2px solid white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .groups{
@@ -183,7 +188,7 @@ $third-color: #c1efff;
 
 
 .groupTitle{
-	font-size: 2.2rem;
+	font-size: 2.3rem;
 	margin: 0px;
 	margin-top: 10px;
 }
@@ -203,6 +208,8 @@ $third-color: #c1efff;
   border-radius: 15px;
 	
   color: rgb(255, 255, 255);
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .goalsBorder{
@@ -216,6 +223,7 @@ $third-color: #c1efff;
   border-radius: 15px;
 	
   color: rgb(255, 255, 255);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .groupContainer {
@@ -235,12 +243,13 @@ $third-color: #c1efff;
   background-color: transparent;
   border-color: transparent;
   border-radius: 30px;
+  
 }
 
 .superSmall{
   margin-left: 5px;
   font-size: 26px;
-  color: #ffb3b3f0;
+  color: #ffcea9;
 }
 
 .mediumSmall{

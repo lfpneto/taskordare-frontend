@@ -15,16 +15,32 @@ import { DareService } from '../services/dare.service';
   styleUrls: ['./user-tasks.component.scss']
 })
 export class UserTasksComponent implements OnInit {
-  allTasks: any;
-  faUpload = faUpload;
+  allGroupsAndTasks: any;
+  allTasksInGroups = [{
+    id: 0,
+    ownerId: 0,
+    groupId: 0,
+    groupName: "",
+    taskName: "",
+    description: "",
+    points: 0,
+    deadline: "",
+    status: 0,
+    url: "",
+    //extra
+    timeLeft: "",
+    showOptions: false
+  }];
+  
 
+  faUpload = faUpload;
 
   constructor(
     private router: Router,
     private taskService: TaskService,
     private groupService: GroupService,
     private dareService: DareService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
     ) { 
     this.router.events.subscribe((ev) => {
       if (ev instanceof NavigationEnd) {
@@ -36,50 +52,109 @@ export class UserTasksComponent implements OnInit {
           this.taskService.getAllTaskbyUserId(userId).subscribe(
             (response) => {
               result = response;
+              console.log(result)
               if (result.status == 'OK') {
-                var i = 0;
-                result.data.Tasks.forEach(
-                  (element: { deadline: any}) => {
-                    //turns data into deadline days left
-                    console.log(element.deadline)
-                    result.data.Tasks[i].daysleft = this.calculateDiff(
-                      element.deadline
-                    );
+                // var i = 0;
+                // result.data.Tasks.forEach(
+                //   (element: { deadline: any}) => {
+                //     //turns data into deadline days left
+                //     console.log(element.deadline)
+                //     result.data.Tasks[i].daysleft = this.calculateDiff(
+                //       element.deadline
+                //     );
 
-                    result.data.Tasks[i].showOptions = false;
+                //     result.data.Tasks[i].showOptions = false;
 
-                    i = i + 1;
+                //     i = i + 1;
+                //   }
+                // );
+
+                this.allGroupsAndTasks = result.data.Tasks;
+                
+                // allTasksInGroups = [{
+                //   ownerId: 0,
+                //   groupId: 0,
+                //   groupName: "",
+                //   taskName: "",
+                //   description: "",
+                //   points: 0,
+                //   deadline: "",
+                //   status: 0,
+                //   url: "",
+                //   //extra
+                //   timeLeft: "",
+                //   showOptions: false
+                // }];
+                
+                console.log(this.allGroupsAndTasks);
+
+                for (let index = 0; index < this.allGroupsAndTasks.length; index++) {
+                  for (let index2 = 0; index2 < this.allGroupsAndTasks[index].tasks.length; index2++) {
+                    // console.log(index);
+                    // console.log(index2);
+                    // console.log(i);
+                    // console.log(this.allGroupsAndTasks[index].group)
+                    // console.log(this.allGroupsAndTasks[index].tasks)
+                    // console.log(this.allGroupsAndTasks[index].group.groupName)
+
+                    this.allTasksInGroups.push({
+                      id: this.allGroupsAndTasks[index].tasks[index2].id,
+                      ownerId: this.allGroupsAndTasks[index].tasks[index2].ownerId,
+                      groupId: this.allGroupsAndTasks[index].group.id,
+                      groupName: this.allGroupsAndTasks[index].group.groupName,
+                      taskName: this.allGroupsAndTasks[index].tasks[index2].taskName,
+                      description: this.allGroupsAndTasks[index].tasks[index2].description,
+                      points: this.allGroupsAndTasks[index].tasks[index2].points,
+                      deadline: this.allGroupsAndTasks[index].tasks[index2].deadline,
+                      status: this.allGroupsAndTasks[index].tasks[index2].status,
+                      url: this.allGroupsAndTasks[index].tasks[index2].url,
+                      //extra
+                      timeLeft: this.calculateDiff(this.allGroupsAndTasks[index].tasks[index2].deadline),
+                      showOptions: false
+                    });
+                    
+                    /* this.allTasksInGroups[i].groupName = this.allGroupsAndTasks[index].group.groupName;
+                    
+                    this.allTasksInGroups[i].name = this.allGroupsAndTasks[index].tasks[index2].taskName;
+                    this.allTasksInGroups[i].description = this.allGroupsAndTasks[index].tasks[index2].description;
+                    this.allTasksInGroups[i].deadline = this.allGroupsAndTasks[index].tasks[index2].deadline;
+                    this.allTasksInGroups[i].points = this.allGroupsAndTasks[index].tasks[index2].points;
+                    this.allTasksInGroups[i].image = this.allGroupsAndTasks[index].tasks[index2].url;
+                    this.allTasksInGroups[i].status = this.allGroupsAndTasks[index].tasks[index2].status; */
+
                   }
-                );
-
-                this.allTasks = result.data.Tasks;
-
-                console.log('start of the loop');
-                for (let index = 0; index < this.allTasks.length; index++) {
-                  const element = this.allTasks[index];
-                  console.log(index);
-                  //gets the info data by his id
-                  this.groupService
-                    .getGroupbyId(element.groupId)
-                    .subscribe(
-                      (response2) => {
-                        console.log(result);
-                        resultGroup = response2;
-                        if (resultGroup.status == 'OK') {
-                          this.allTasks[index].groupName =
-                            resultGroup.data.Group.groupName;
-                        }
-                        if (resultGroup == -1) {
-                          this.toastr.error('Something failed', 'Error');
-                        }
-                      },
-                      (error) => {
-                        console.log(
-                          'Errors (CORS?) - ' + JSON.stringify(error)
-                        );
-                      }
-                    );
                 }
+
+                this.allTasksInGroups.shift();
+                console.log(this.allTasksInGroups)
+                
+
+                // console.log('start of the loop');
+                // for (let index = 0; index < this.allGroupsAndTasks.length; index++) {
+                //   const element = this.allGroupsAndTasks[index];
+                //   console.log(index);
+                //   //gets the info data by his id
+                //   this.groupService
+                //     .getGroupbyId(element.groupId)
+                //     .subscribe(
+                //       (response2) => {
+                //         console.log(result);
+                //         resultGroup = response2;
+                //         if (resultGroup.status == 'OK') {
+                //           this.allGroupsAndTasks[index].groupName =
+                //             resultGroup.data.Group.groupName;
+                //         }
+                //         if (resultGroup == -1) {
+                //           this.toastr.error('Something failed', 'Error');
+                //         }
+                //       },
+                //       (error) => {
+                //         console.log(
+                //           'Errors (CORS?) - ' + JSON.stringify(error)
+                //         );
+                //       }
+                //     );
+                // }
                 
               }
               if (result == -1) {
@@ -123,7 +198,7 @@ export class UserTasksComponent implements OnInit {
   }
 
   // OnClick of button Upload
-  onUpload(event: any, task: TaskDetail) {
+  onUpload(event: any, task: any) {
     console.log(event);
     if (event.target.files[0]) {
       console.log('entrei');
@@ -156,10 +231,14 @@ export class UserTasksComponent implements OnInit {
         result = response;
         if (result.status == 'OK') {
           this.toastr.success('Status updated', 'Success');
-        }
-        if (result == -1) {
+        }else if (result == -1){
           this.toastr.error('Something failed', 'Error');
         }
+        else{
+          this.toastr.error('Something failed', 'Error');
+        }
+
+        
       },
       (error) => {
         console.log('Errors (CORS?) - ' + JSON.stringify(error));

@@ -3,8 +3,8 @@
         <h1 class="tittle">Add/Edit Dare -> {{this.userChallengedName}}</h1>
         <input type="text" name="name" placeholder="Name" ngModel />
         <input type="text" name="description" placeholder="Description" ngModel />
-        <input type="text" name="reward" placeholder="Reward" ngModel />
-        <br>
+        <input type="text" name="points" placeholder="Points" ngModel />
+        <br>Your points: <b>{{this.groupChallengerPoints}}</b><br>
         Deadline: <input type="date" name="date" placeholder="Date" ngModel />
         <br>
         <button *ngIf="buttonsShow" type="submit" value="submit" class="buttonRose buttonRoseGoal">Add Dare</button>

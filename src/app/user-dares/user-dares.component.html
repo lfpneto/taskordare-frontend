@@ -17,7 +17,7 @@
         <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Description</a> </div>
         <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Time</a></div>
         <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Reward</a></div>
-        <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Image</a></div>
+        <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Proof</a></div>
         <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Status</a></div>
     </div>
     <div class="table-content">
@@ -27,7 +27,7 @@
             <div class="table-data">{{dare.dareName}}</div>
             <div class="table-data">{{dare.description}}</div>
             <div class="table-data">{{dare.daysleft}}</div>
-            <div class="table-data">{{dare.reward}}</div>
+            <div class="table-data">{{dare.points}} points</div>
             <div class="table-data">
                 <input type="file" *ngIf="dare.showOptions && (dare.url == '' || dare.url == null)" (change)="onUpload($event, dare)">
                 <fa-icon class="favIconTrash" type="file" *ngIf="dare.url == '' || dare.url == null" (click)="dare.showOptions = !dare.showOptions" [icon]="faUpload"></fa-icon>
@@ -50,7 +50,7 @@
         <div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Description</a> </div>
         <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Time</a></div>
         <div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Reward</a></div>
-        <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Image</a></div>
+        <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Proof</a></div>
         <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Status</a></div>
     </div>
     <div class="table-content">
@@ -60,7 +60,7 @@
             <div class="table-data">{{dare.dareName}}</div>
             <div class="table-data">{{dare.description}}</div>
             <div class="table-data">{{dare.daysleft}}</div>
-            <div class="table-data">{{dare.reward}}</div>
+            <div class="table-data">{{dare.points}} points</div>
             <div class="table-data">
                 <a class="imgPath" target="_blank" href="{{dare.url}}">
                     {{dare.url}}

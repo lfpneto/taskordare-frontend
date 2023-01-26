@@ -9,7 +9,7 @@
 		<!-- AHAHAHA -->
 	</div>
 </div>
-<h1 class="center">All tasks from all my groups</h1>
+<h1 class="center">All task from all my groups</h1>
 
 <div class="table">
 	<div class="table-header">
@@ -20,19 +20,22 @@
 		<div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Time</a>
 		</div>
 		<div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Points</a></div>
-		<div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Image</a></div>
+		<div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Proof</a></div>
 		<div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Status</a></div>
 
 
 		<!-- <div class="header__item"><a id="total" class="filter__link filter__link--number" href="#"></a></div> -->
 	</div>
 	<div class="table-content">
-		<div class="table-row" *ngFor="let task of allTasks">
-			<div class="table-data">{{task.groupName}}</div>
-			<div class="table-data">{{task.taskName}}</div>
-			<div class="table-data">{{task.description}}</div>
-			<div class="table-data">{{task.daysleft}}</div>
-			<div class="table-data">{{task.points}}</div>
+		<div class="table-row" *ngFor="let task of allTasksInGroups">
+			
+				<div class="table-data">{{task.groupName}}</div>
+				<div class="table-data">{{task.taskName}}</div>
+				<div class="table-data">{{task.description}}</div>
+				<div class="table-data">{{task.timeLeft}}</div>
+				<div class="table-data">{{task.points}}</div>
+
+			
 			
 			<div class="table-data">
                 <input type="file" *ngIf="task.showOptions && (task.url == '' || task.url == null)" (change)="onUpload($event, task)">

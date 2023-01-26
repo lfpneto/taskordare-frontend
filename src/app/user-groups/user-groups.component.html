@@ -27,8 +27,8 @@
         <div *ngIf="this.divName == 'membersTaks'">
             <a class="superSmall">GroupId: {{this.groupDetail.groupId}}</a>
             <h1 class="groupTitle">{{this.groupDetail.groupName}}</h1>
-            <a class="medium">{{this.groupDetail.points}}</a><br>
-            <a class="mediumSmall">{{this.groupDetail.permission <= 1 ? this.groupDetail.permission == 0 ? 'Creator' : 'Admin' : 'Normal'}}</a>
+            <a class="medium">My Points: {{this.groupDetail.points}}</a><br>
+            <a class="mediumSmall">Permission: {{this.groupDetail.permission <= 1 ? this.groupDetail.permission == 0 ? 'Creator' : 'Admin' : 'Normal'}}</a>
             <h4 class="groupDescription">{{groupDetail.description}}</h4>
             <div class="groupContainer">
                 <!-- <br> -->
@@ -40,7 +40,7 @@
                                 <a class="membersOfGroup" [routerLink]="['/usergroups']">{{member.userName}}</a>
                                 <fa-icon class="favIconMemberOption" (click)="member.showOptions = !member.showOptions" [icon]="faEllipsisV"></fa-icon>
                                 <div *ngIf="member.showOptions" class="options">
-                                    <a class="addDare" [routerLink]="['/createeditdaretasks']" [queryParams]="{taskOrDare: 'dare', userChallengedId: member.id, userChallengedName: member.userName}">Add Dare</a>
+                                    <a class="addDare" [routerLink]="['/createeditdaretasks']" [queryParams]="{taskOrDare: 'dare', userChallengedId: member.id, userChallengedName: member.userName, groupChallengedId: this.groupDetail.groupId, groupChallengerPoints: this.groupDetail.points}">Add Dare</a>
                                     <fa-icon *ngIf="this.groupDetail.permission <= 1" (click)="member.promotePlayerShow = !member.promotePlayerShow" class="favIconAdd" [icon]="faUpLong"></fa-icon>
                                     <br *ngIf="member.promotePlayerShow">
                                     <a class="addDare" *ngIf="member.promotePlayerShow" (click)="PromoteMember(member.id, groupDetail.groupId, member.userName)">Promote Member</a>

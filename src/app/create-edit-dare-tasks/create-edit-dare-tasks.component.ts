@@ -42,6 +42,9 @@ export class CreateEditDareTasksComponent implements OnInit {
         this.groupChallengerPoints = params['groupChallengerPoints'];
 
       }else if (this.taskOrDare == "dare"){
+        this.groupChallengedId = params['groupChallengedId'];
+        this.groupChallengerPoints = params['groupChallengerPoints'];
+
         this.userChallengedId = params['userChallengedId'];
         this.userChallengedName = params['userChallengedName'];
 
@@ -65,7 +68,8 @@ export class CreateEditDareTasksComponent implements OnInit {
     this.dareDetail.id = 0;
     this.dareDetail.dareName = result.name.value;
     this.dareDetail.description = result.description.value;
-    this.dareDetail.reward = result.reward.value;
+    this.dareDetail.groupId = this.groupChallengedId;
+    this.dareDetail.points = result.points.value;
     this.dareDetail.challengedId = this.userChallengedId;
     this.dareDetail.challengerId = Number(localStorage.getItem('id') || 0);
     this.dareDetail.deadline = result.date.value;

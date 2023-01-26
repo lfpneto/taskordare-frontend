@@ -9,6 +9,7 @@ import { TaskDetail } from '../classes/task-detail';
 export class TaskService {
 
   private baseUrl = environment.apiURL + 'tasks';
+  private baseUserConfigURL = environment.apiURL + 'user-profile';
   private baseGroupConfigUrl = environment.apiURL + 'group-config';
 
 
@@ -25,6 +26,7 @@ export class TaskService {
       //console.log("updateTask");
       let url = this.baseUrl + '/update';
       console.log(url);
+      console.log(TaskDetail);
       return this.http.post(url, TaskDetail);
     }
   
@@ -57,7 +59,7 @@ export class TaskService {
     }
 
     getAllTaskbyUserId(userId: number) {
-      let url = this.baseUrl + '/owner/';
+      let url = this.baseUserConfigURL + '/tasks-in-groups/';
       return this.http.get(url + userId);
     }
   
